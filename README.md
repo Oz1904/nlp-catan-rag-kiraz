@@ -7,7 +7,7 @@ Fachhochschule Südwestfalen · M.Sc. Angewandte Künstliche Intelligenz
 **Betreuung:** Prof. Dr. Christian Gawron
 **Abgabe:** 29. September 2026
 
-[![In Colab öffnen](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fhswf/<REPOSITORY-NAME>/blob/main/NLP_Hausarbeit_CATAN_RAG.ipynb)
+[![In Colab öffnen](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Oz1904/nlp-catan-rag-kiraz/blob/main/NLP_Hausarbeit_CATAN_RAG.ipynb)
 
 ---
 
@@ -104,14 +104,22 @@ Alle Ergebnisse landen in `Meine Ablage/NLP_CATAN/ergebnisse/` und überstehen e
 
 ## Literatur
 
-1. Lewis, P. et al. (2020): *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.* NeurIPS 33. https://arxiv.org/abs/2005.11401
-2. *Retrieval-Augmented Generation for Natural Language Processing: A Survey.* arXiv:2407.13193
-3. Es, S. et al. (2024): *RAGAS: Automated Evaluation of Retrieval Augmented Generation.* EACL 2024 (Demos). https://arxiv.org/abs/2309.15217
-4. Karpukhin, V. et al. (2020): *Dense Passage Retrieval for Open-Domain Question Answering.* EMNLP 2020. https://arxiv.org/abs/2004.04906
-5. Möller, T.; Risch, J.; Pietsch, M. (2021): *GermanQuAD and GermanDPR.* MRQA 2021. https://aclanthology.org/2021.mrqa-1.4/
-6. Efron, B.; Tibshirani, R. J. (1993): *An Introduction to the Bootstrap.* Chapman & Hall/CRC.
+1. Lewis, P.; Perez, E.; Piktus, A.; Petroni, F.; Karpukhin, V.; Goyal, N.; Küttler, H.; Lewis, M.; Yih, W.; Rocktäschel, T.; Riedel, S.; Kiela, D. (2020): *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.* In: Advances in Neural Information Processing Systems 33 (NeurIPS 2020), S. 9459–9474. https://proceedings.neurips.cc/paper_files/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf
+2. Karpukhin, V.; Oguz, B.; Min, S.; Lewis, P.; Wu, L.; Edunov, S.; Chen, D.; Yih, W. (2020): *Dense Passage Retrieval for Open-Domain Question Answering.* In: Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP), S. 6769–6781. https://doi.org/10.18653/v1/2020.emnlp-main.550
+3. Wu, S.; Xiong, Y.; Cui, Y.; Wu, H.; Chen, C.; Yuan, Y.; Huang, L.; Liu, X.; Kuo, T.-W.; Guan, N.; Xue, C. J. (2026): *Retrieval-augmented generation for natural language processing: a survey.* Artificial Intelligence Review 59(9), Artikel 192. https://doi.org/10.1007/s10462-026-11605-7
+4. Yu, H.; Gan, A.; Zhang, K.; Tong, S.; Liu, Q.; Liu, Z. (2025): *Evaluation of Retrieval-Augmented Generation: A Survey.* In: Zhu, W. et al. (Hrsg.): Big Data. Communications in Computer and Information Science, Bd. 2301. Singapur: Springer, S. 102–120. https://doi.org/10.1007/978-981-96-1024-2_8
+5. Es, S.; James, J.; Espinosa Anke, L.; Schockaert, S. (2024): *RAGAs: Automated Evaluation of Retrieval Augmented Generation.* In: Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations, S. 150–158. https://doi.org/10.18653/v1/2024.eacl-demo.16
+6. Shi, F.; Chen, X.; Misra, K.; Scales, N.; Dohan, D.; Chi, E. H.; Schärli, N.; Zhou, D. (2023): *Large Language Models Can Be Easily Distracted by Irrelevant Context.* In: Proceedings of the 40th International Conference on Machine Learning (ICML), PMLR 202, S. 31210–31227. https://proceedings.mlr.press/v202/shi23a.html
+7. Cohen, J. (1960): *A Coefficient of Agreement for Nominal Scales.* Educational and Psychological Measurement 20(1), S. 37–46. https://doi.org/10.1177/001316446002000104
+8. Longpre, S.; Perisetla, K.; Chen, A.; Ramesh, N.; DuBois, C.; Singh, S. (2021): *Entity-Based Knowledge Conflicts in Question Answering.* In: Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP), S. 7052–7063. https://doi.org/10.18653/v1/2021.emnlp-main.565
+9. Efron, B.; Tibshirani, R. J. (1993): *An Introduction to the Bootstrap.* New York: Chapman & Hall.
+10. Field, C. A.; Welsh, A. H. (2007): *Bootstrapping Clustered Data.* Journal of the Royal Statistical Society: Series B (Statistical Methodology) 69(3), S. 369–390. https://doi.org/10.1111/j.1467-9868.2007.00593.x
+11. Dror, R.; Baumer, G.; Shlomov, S.; Reichart, R. (2018): *The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing.* In: Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), S. 1383–1392. https://doi.org/10.18653/v1/P18-1128
+12. McNemar, Q. (1947): *Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages.* Psychometrika 12(2), S. 153–157. https://doi.org/10.1007/BF02295996
+13. Manning, C. D.; Raghavan, P.; Schütze, H. (2008): *Introduction to Information Retrieval.* Cambridge: Cambridge University Press, Kap. 8 (Evaluation in Information Retrieval).
+14. Liu, N. F.; Lin, K.; Hewitt, J.; Paranjape, A.; Bevilacqua, M.; Petroni, F.; Liang, P. (2024): *Lost in the Middle: How Language Models Use Long Contexts.* Transactions of the Association for Computational Linguistics 12, S. 157–173. https://doi.org/10.1162/tacl_a_00638
 
-Die vollständige Quellenliste steht im Notebook.
+Technische Dokumentation (OpenAI-Embeddings, pgvector) und die Primärquellen des Korpus stehen im Notebook, Abschnitt 13.
 
 ## Einsatz von KI-Werkzeugen
 
