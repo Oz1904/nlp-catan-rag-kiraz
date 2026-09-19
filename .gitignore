@@ -1,0 +1,18 @@
+# Urheberrechtlich geschuetzte Regelhefte (© KOSMOS) - niemals committen.
+# Bezug und Pruefsummen: quellen/README.md
+*.pdf
+*.PDF
+
+# Archivierte Bewertungsboegen frueherer Pruefsummen (Historie steht in Git)
+ergebnisse/*_archiv_*.csv
+
+# Zugangsdaten gehoeren in Colab-Secrets, nie ins Repository
+.env
+*.key
+secrets*
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
