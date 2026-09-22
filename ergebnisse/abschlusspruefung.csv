@@ -1,0 +1,17 @@
+﻿Pruefung,Ergebnis,Hinweis
+Korpus eingelesen,ok,
+Chunks erzeugt,ok,
+Quellenmanifest vorhanden,ok,
+PDF-Fassungen identisch mit der dokumentierten,ok,
+Download-URL und Abrufdatum eingetragen,OFFEN,Abrufdatum in QUELLEN ergaenzen (Datum des eigenen Downloads)
+Modell-ID eingetragen,ok,
+Mindestens 25 Testfragen,OFFEN,aktuell 0 Testfragen
+Versuchsplan eingefroren und zum Lauf passend,OFFEN,versuchsplan.json stammt aus einem anderen Stand oder ENDLAUF ist False
+Retrieval-Metriken berechnet,ok,
+"Endlauf vollstaendig (jede Testfrage x A, B, C)",OFFEN,"0 Kombination(en) fehlen, z. B. []"
+Keine doppelten Antworten,ok,
+Keine am Tokenlimit abgeschnittene Antwort,ok,
+Bewertungen fuer alle Testfaelle,OFFEN,0 Faelle ohne Bewertung
+Auswertung auf Testfragen,OFFEN,aktuell: keine
+Bootstrap zum aktuellen Stand berechnet,OFFEN,bootstrap.csv fehlt oder stammt aus einem frueheren Versuchsstand
+Repository-Link eingetragen,ok,

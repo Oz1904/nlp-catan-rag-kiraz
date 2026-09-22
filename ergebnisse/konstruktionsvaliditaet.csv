@@ -1,0 +1,7 @@
+﻿question_id,fragetyp,wortueberlappung,laengste_woertliche_folge
+E01,fakten,0.5714285714285714,4
+E02,fakten,0.6875,3
+E03,ausnahme,0.5714285714285714,3
+E04,ausnahme,0.47368421052631576,7
+E05,anwendung,0.5333333333333333,3
+E06,anwendung,0.6428571428571429,3
