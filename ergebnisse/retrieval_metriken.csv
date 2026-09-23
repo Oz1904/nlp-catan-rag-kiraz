@@ -1,0 +1,7 @@
+﻿question_id,split,fragetyp,variante,regelgruppe,precision@4,recall@4,f1,gold_vollstaendig,zitat_recall,seiten_recall,hit@k,vollstaendig,treffer,gold_seiten
+E01,dev,fakten,grundspiel,RG-02_handelsroute,0.25,1.0,0.4,1.0,1.0,1.0,1.0,1.0,"GS-09-01, GS-11-01, GS-09-02, GS-12-01",GR S.9
+E02,dev,fakten,staedte_ritter,RG-06_ritter_bauen,0.5,1.0,0.6666666666666666,1.0,1.0,1.0,1.0,1.0,"SR-12-01, SR-09-02, SR-10-01, SR-09-01",ST S.9
+E03,dev,ausnahme,staedte_ritter,RG-04_raeuber_barbaren,0.25,1.0,0.4,1.0,1.0,1.0,1.0,1.0,"SR-08-02, SR-13-03, SR-07-01, SR-13-01",ST S.8
+E04,dev,ausnahme,staedte_ritter,RG-05_rittermacht,0.25,1.0,0.4,1.0,1.0,1.0,1.0,1.0,"SR-04-02, SR-13-03, SR-13-01, SR-05-03",ST S.4
+E05,dev,anwendung,grundspiel,RG-03_handkarten,0.25,1.0,0.4,1.0,1.0,1.0,1.0,1.0,"GS-06-04, GS-12-01, GS-04-01, GS-07-01",GR S.7
+E06,dev,anwendung,staedte_ritter,RG-07_barbarenangriff,0.5,0.6666666666666666,0.5714285714285715,0.0,0.75,0.5,1.0,0.0,"SR-13-01, SR-13-03, SR-02-01, SR-07-01","ST S.9, ST S.13"

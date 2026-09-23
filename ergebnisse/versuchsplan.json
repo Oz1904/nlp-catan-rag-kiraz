@@ -1,0 +1,55 @@
+{
+  "konfiguration": {
+    "modell_antwort": "gpt-4.1-mini-2025-04-14",
+    "modell_embedding": "text-embedding-3-small",
+    "temperatur": 0.0,
+    "max_antwort_tokens": 400,
+    "chunk_ziel_tokens": 400,
+    "chunk_max_tokens": 500,
+    "chunk_min_tokens": 60,
+    "chunks_sha256": "a1f677a4463701ce4825ad48459cbcb60fcf0ca3aa54a78d05ce978bb0f3017d",
+    "ersetzte_regeln": [
+      "S&R S. 2: Sieg mit 13 statt 10 Siegpunkten",
+      "S&R S. 4: Sondersiegpunkttafel Größte Rittermacht bleibt in der Schachtel",
+      "S&R S. 4/6: ohne die Entwicklungskarten des Grundspiels",
+      "S&R S. 4-5: eigener Startaufbau für das erste Spiel"
+    ],
+    "top_k": 4,
+    "seed": 42,
+    "bedingungen": [
+      "A_ohne_rag",
+      "B_mit_rag",
+      "C_goldkontext"
+    ],
+    "system_anweisung": "Du beantwortest Regelfragen zum Brettspiel CATAN auf Deutsch. Nenne zuerst die Entscheidung oder das Ergebnis, danach eine knappe Begründung. Beachte die in der Frage genannte Spielvariante. Wenn du dir nicht sicher bist, sage das ausdrücklich, statt zu raten. Antworte in höchstens acht Sätzen.",
+    "promptaufbau_sha256": "5e6582eef49d16bc3ff2d5bd0a5d982962b1d7f670021976bd105734522a0371",
+    "goldkontext_sha256": "576fb85c36130122b3338908c0fe7e6063b67be0e13e2a5d760fcd384db35b90",
+    "retrieval_sha256": "5c865d3b5bc61bae2a0a11b20d7f57f8269866fc3b74337e82ca5c27dcb1ad37",
+    "n_chunks": 82,
+    "n_fragen": 36,
+    "n_regelgruppen": 19,
+    "regelgruppen": {
+      "RG-02_handelsroute": "entwicklung",
+      "RG-03_handkarten": "entwicklung",
+      "RG-04_raeuber_barbaren": "entwicklung",
+      "RG-05_rittermacht": "entwicklung",
+      "RG-06_ritter_bauen": "entwicklung",
+      "RG-07_barbarenangriff": "entwicklung",
+      "RG-10_siegbedingung": "test",
+      "RG-11_gruendungsphase": "test",
+      "RG-12_siedlung_abstand": "test",
+      "RG-13_stadtertraege": "test",
+      "RG-14_entwicklungskarten": "test",
+      "RG-15_stadtausbau": "test",
+      "RG-16_fortschrittskarten": "test",
+      "RG-17_tauschverhaeltnisse": "test",
+      "RG-18_kartenabgabe_siegpunkte": "test",
+      "RG-19_erzwungener_tausch": "test",
+      "RG-20_ertragskarten": "test",
+      "RG-21_ereigniswuerfel": "test",
+      "RG-22_stadtbau": "test",
+      "RG-23_zahlenchips": "test"
+    }
+  },
+  "pruefsumme": "e84680b5b3b0b18e9251fbb240c5944b2d7ad7033248f75e4be2f6c36f7e417a"
+}
