@@ -3,7 +3,7 @@
 Semesterabschließende Ausarbeitung im Modul **Natural Language Processing (SoSe 2026)**
 Fachhochschule Südwestfalen · M.Sc. Angewandte Künstliche Intelligenz
 
-**Autor:** Ozan Kiraz · **Matrikelnummer:** _eintragen_
+**Autor:** Ozan Kiraz · **Matrikelnummer:** 30500695
 **Betreuung:** Prof. Dr. Christian Gawron
 **Abgabe:** 29. September 2026
 
