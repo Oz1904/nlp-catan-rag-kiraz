@@ -1,30 +1,30 @@
 ﻿question_id,A_ohne_rag,B_mit_rag,C_goldkontext,hit@k,gold_vollstaendig,zitat_recall,diagnose
-T01,1.0,1.0,1.0,1.0,1.0,1.0,B korrekt
-T02,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
+T01,1.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
+T02,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
 T03,0.0,0.0,0.0,0.0,0.0,0.0,Auch mit Gold-Kontext keine vollstaendig korrekte Antwort
-T04,1.0,1.0,1.0,1.0,1.0,1.0,B korrekt
-T05,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
+T04,1.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
+T05,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
 T06,0.0,0.0,1.0,1.0,0.0,0.5,"B falsch, C richtig; erforderliche Belege in B unvollstaendig"
 T07,0.0,0.0,1.0,0.0,0.0,0.0,"B falsch, C richtig; erforderliche Belege in B unvollstaendig"
 T08,0.0,0.0,0.0,1.0,0.0,0.5,Auch mit Gold-Kontext keine vollstaendig korrekte Antwort
-T09,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
+T09,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
 T10,0.0,0.0,0.0,1.0,0.0,0.0,Auch mit Gold-Kontext keine vollstaendig korrekte Antwort
-T11,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
-T12,0.0,1.0,0.0,1.0,0.0,0.6666666666666666,B korrekt
+T11,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
+T12,0.0,1.0,0.0,1.0,0.0,0.6666666666666666,"B korrekt, C falsch; Gold-Kontext keine Obergrenze"
 T13,0.0,0.0,0.0,1.0,1.0,1.0,Auch mit Gold-Kontext keine vollstaendig korrekte Antwort
-T14,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
-T15,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
+T14,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
+T15,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
 T16,0.0,0.0,1.0,1.0,1.0,1.0,"B falsch, C richtig; erforderliche Belege in B vorhanden"
-T17,1.0,1.0,1.0,1.0,1.0,1.0,B korrekt
-T18,0.0,1.0,0.0,1.0,1.0,1.0,B korrekt
+T17,1.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
+T18,0.0,1.0,0.0,1.0,1.0,1.0,"B korrekt, C falsch; Gold-Kontext keine Obergrenze"
 T19,0.0,0.0,1.0,1.0,0.0,0.6666666666666666,"B falsch, C richtig; erforderliche Belege in B unvollstaendig"
-T20,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
+T20,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
 T21,0.0,0.0,0.0,1.0,1.0,1.0,Auch mit Gold-Kontext keine vollstaendig korrekte Antwort
 T22,0.0,0.0,1.0,1.0,0.0,0.3333333333333333,"B falsch, C richtig; erforderliche Belege in B unvollstaendig"
-T23,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
-T24,1.0,1.0,1.0,1.0,1.0,1.0,B korrekt
+T23,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
+T24,1.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
 T25,0.0,0.0,1.0,0.0,0.0,0.0,"B falsch, C richtig; erforderliche Belege in B unvollstaendig"
-T26,0.0,1.0,1.0,1.0,1.0,1.0,B korrekt
+T26,0.0,1.0,1.0,1.0,1.0,1.0,B und C korrekt
 T27,0.0,0.0,1.0,1.0,0.0,0.5,"B falsch, C richtig; erforderliche Belege in B unvollstaendig"
 T28,0.0,0.0,1.0,1.0,1.0,1.0,"B falsch, C richtig; erforderliche Belege in B vorhanden"
 T29,1.0,0.0,0.0,1.0,0.0,0.3333333333333333,Auch mit Gold-Kontext keine vollstaendig korrekte Antwort
