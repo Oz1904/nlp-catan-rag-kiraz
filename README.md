@@ -20,9 +20,9 @@ Alles, was zur Bewertung nötig ist, liegt in diesem Repository. Es wird **kein*
 
 Die Abgabefassung startet mit `PRUEFMODUS = True`; es ist nichts umzustellen. Das Notebook klont dieses Repository, lädt die beiden Regelhefte von der offiziellen Downloadseite, baut die Wissensbasis daraus neu auf und prüft, ob Fragenkatalog, Regelgruppen, Prompt- und Retrieval-Code **zeichengenau die Prüfsumme des Abgabelaufs** ergeben. Anschließend rechnet es Korrektheitsanteile, Bootstrap-Intervalle, Fehlerdiagnose und Abbildungen aus den gespeicherten Antworten und Bewertungen neu. Es entstehen keine Modellantworten und keine Kosten.
 
-Eine Grenze dieses Weges: Die **Vektorsuche wird nicht erneut ausgeführt**. Sie bräuchte neue Embeddings und damit einen API-Zugang; die Retrieval-Kennzahlen werden deshalb aus den gespeicherten Trefferlisten des Abgabelaufs übernommen. Wer auch die Suche selbst nachvollziehen will, braucht einen eigenen Schlüssel (siehe *Betriebsarten*).
+Eine Grenze dieses Weges: Die **Vektorsuche wird nicht erneut ausgeführt**, weil sie neue Embeddings und damit einen API-Zugang bräuchte. Die Retrieval-Kennzahlen werden stattdessen aus den gespeicherten Treffer-IDs des Abgabelaufs gegen die Gold-Chunks des Katalogs **neu berechnet** und mit den gespeicherten Werten verglichen. Wer auch die Suche selbst wiederholen will, braucht einen eigenen Schlüssel (siehe *Drei Wege der Reproduktion*).
 
-Neu berechnete Dateien schreibt der Prüfmodus in den Unterordner `ergebnisse/pruefmodus/`. Die abgegebenen Ergebnisdateien bleiben dabei unverändert; passen gespeicherte Bewertungen und Katalog nicht zusammen, bricht der Lauf mit einer Begründung ab, statt Dateien zu überschreiben.
+Neu berechnete Dateien schreibt der Prüfmodus in den Unterordner `ergebnisse/pruefmodus/`; die abgegebenen Ergebnisdateien bleiben unverändert. Weichen Katalog, Konfiguration, Bewertungsbogen oder Zweitbewertung vom Abgabestand ab, bricht der Lauf **vor** der Auswertung mit einer Begründung ab. Geprüft wird dabei auch, dass jeder Bewertungsfall genau die protokollierte Antwort zeigt. Weicht nur die aus den PDFs rekonstruierte Wissensbasis ab, etwa durch eine andere Softwarefassung, läuft er mit Hinweis weiter, weil gespeicherte Antworten und Bewertungen davon unberührt sind.
 
 Wer nur lesen möchte: Beide Notebooks im Repository enthalten alle Zellausgaben des jeweiligen Laufs, auch ohne Ausführung.
 
@@ -40,7 +40,7 @@ Voraussetzung bleibt eine Python-Umgebung mit Internetzugang — „ohne API-Zug
 
 B gegen A: **+33,3 Prozentpunkte**, 95-%-Intervall des gepaarten Cluster-Bootstraps über 13 Regelgruppen **+14,3 bis +54,5**. C gegen B: +23,3 Punkte [+2,9; +46,2].
 
-Der aufschlussreichere Befund steht in der Fehlerverteilung: Erfundene Regeln gehen von 19 über 8 auf 4 Nennungen zurück, fälschlich übertragene Grundspielregeln von 6 über 1 auf 0 — **interne Widersprüche bleiben** (5 / 7 / 4) und machen mit bereitgestelltem Kontext rund die Hälfte der verbleibenden Fehler aus. Acht Fragen bleiben auch mit perfekt ausgewählten Belegen falsch, bei zwei verschlechtert der Belegkontext eine zuvor korrekte Antwort.
+Ergänzend und explorativ, weil die Fehlerarten nur von einer Person vergeben wurden, zeigt die Fehlerverteilung ein Muster: Erfundene Regeln gehen von 19 über 8 auf 4 Nennungen zurück, fälschlich übertragene Grundspielregeln von 6 über 1 auf 0 — **interne Widersprüche bleiben** (5 / 7 / 4) und machen mit bereitgestelltem Kontext rund die Hälfte der verbleibenden Fehler aus. Acht Fragen bleiben auch mit perfekt ausgewählten Belegen falsch, bei zwei verschlechtert der Belegkontext eine zuvor korrekte Antwort.
 
 Einordnung, Grenzen und die nicht gestützte Hypothese H2 stehen in Kapitel 11 und 12 des Notebooks.
 
@@ -94,14 +94,14 @@ Bedingung C erhält die Chunks mit den Schlüsselzitaten, nicht die vollständig
     ├── korrektheit_*.csv            Korrektheit gesamt und je Fragetyp
     ├── bootstrap.csv                Cluster-Bootstrap, gesamt und je Fragetyp
     ├── fehlerdiagnose.csv           Befundzuordnung je Frage aus dem A/B/C-Vergleich
-    ├── abschlusspruefung.csv        Ergebnis der automatischen Abschlusskontrollen (Datenlauf: 17 von 17)
+    ├── abschlusspruefung.csv        Ergebnis der automatischen Abschlusskontrollen (Datenlauf: 18 von 18; Prüfmodus: 21 von 21)
     ├── versionen.csv                Programmversionen des Abgabelaufs
     └── *.png                        Abbildungen
 ```
 
 **Verbindlich ist dieses Repository.** Das Notebook klont es beim Start in die Colab-Sitzung.
 
-**Nicht im Repository:** die Original-PDFs, die extrahierten Volltexte und die gefüllte Wissensdatenbank. Die PDFs bezieht jede Person beim Ausführen selbst von der offiziellen Downloadseite. Gezeigt werden nur kurze Belegzitate mit Seitenangabe.
+**Nicht im Repository:** die Original-PDFs, die extrahierten Volltexte und die gefüllte Wissensdatenbank. Die PDFs bezieht jede Person beim Ausführen selbst von der offiziellen Downloadseite. Gezeigt werden kurze Belegzitate mit Seitenangabe sowie Auszüge von je rund 400 Zeichen aus zwei Seiten, an denen die Textextraktion geprüft wird.
 
 ## Urheberrecht
 
@@ -119,30 +119,24 @@ Das Notebook ist für Google Colab ausgelegt und trainiert kein Modell — eine 
 | Schalter | Wirkung | Voraussetzungen |
 |---|---|---|
 | `PRUEFMODUS = True` *(Voreinstellung)* | Gespeicherte Ergebnisse des Abgabelaufs laden, Prüfsumme nachrechnen und alle Kennzahlen neu berechnen | Internet |
-| `PRUEFMODUS = False`, `ENDLAUF = True` *(Voreinstellung)* | Vollständiger Durchlauf über alle 36 Fragen | API-Schlüssel |
+| `PRUEFMODUS = False`, `ENDLAUF = True` *(Voreinstellung)* | Datenlauf über alle 36 Fragen; bereits protokollierte Antworten zur selben Prüfsumme werden wiederverwendet | API-Schlüssel |
 | `PRUEFMODUS = False`, `ENDLAUF = False` | Entwicklungsphase, nur die 6 Entwicklungsfragen | API-Schlüssel |
 
 Die dritte Zeile bricht ab, wenn bereits bewertete Testfälle vorliegen: Ein Entwicklungslauf würde ein Ergebnispaket ohne Kennzahlen erzeugen und damit den Abgabestand ersetzen.
 
 Der Schalter `ABLAGE` bestimmt den Arbeitsordner. Die Abgabe verwendet `"github"`: Das Repository wird in die Colab-Sitzung geklont und am Ende jedes Datenlaufs ein `ergebnisse_paket.zip` zum Herunterladen erzeugt. Die Alternativen `"drive"` und `"colab"` sind vorhanden, für die Bewertung aber nicht nötig.
 
-**Für einen eigenen Datenlauf**
-
-1. Nichts herunterladen: Das Notebook lädt beide Regelhefte beim ersten Lauf von [catan.de](https://www.catan.de/catan-verstehen/spielregeln) und vergleicht die SHA-256-Prüfsumme mit der dokumentierten Fassung. Scheitert der Download, öffnet sich ein Upload-Dialog.
-2. In Colab unter *Secrets* (Schlüsselsymbol) `OPENAI_API_KEY` anlegen und den Notebook-Zugriff aktivieren; optional `SUPABASE_URL` und `SUPABASE_KEY`. Schlüssel stehen weder im Notebook noch im Repository.
-3. `PRUEFMODUS = False` setzen und *Laufzeit → Alle ausführen*.
-
-Der Durchlauf setzt nach einem Abbruch an der richtigen Stelle fort: Bereits erzeugte Antworten zur aktuellen Prüfsumme gelten als erledigt.
+**Schlüssel für die Wege 2 und 3.** In Colab unter *Secrets* (Schlüsselsymbol) `OPENAI_API_KEY` anlegen und den Notebook-Zugriff aktivieren; optional `SUPABASE_URL` und `SUPABASE_KEY`. Schlüssel stehen weder im Notebook noch im Repository. Die Regelhefte lädt das Notebook in allen drei Wegen selbst von [catan.de](https://www.catan.de/catan-verstehen/spielregeln) und vergleicht die SHA-256-Prüfsumme mit der dokumentierten Fassung; scheitert der Download, öffnet sich ein Upload-Dialog.
 
 **Supabase (optional).** Die berichteten Ergebnisse stammen aus dem lokalen Suchpfad im Arbeitsspeicher; **der Datenbankpfad wurde in den dokumentierten Läufen nicht verwendet.** Wer ihn nutzen möchte, führt das SQL aus `ergebnisse/schema.sql` einmalig im SQL-Editor des Supabase-Projekts aus. Das Notebook schreibt die Chunks samt Vektoren in die Datenbank und vergleicht dann für jede Frage die Trefferfolge beider Pfade. Ohne Zugangsdaten läuft alles lokal.
 
 **Laufzeit und Kosten.** Der dokumentierte Datenlauf umfasste 108 Modellaufrufe (36 Fragen × 3 Bedingungen) mit rund 74.000 Tokens in etwa fünf Minuten. Die Indexierung beider Hefte mit `text-embedding-3-small` kostet weniger als einen Cent; der gesamte Durchlauf liegt im Bereich einiger Cent.
 
-## Reproduktion in drei Stufen
+## Drei Wege der Reproduktion
 
-1. **Ergebnisse prüfen** — Voreinstellung. Wissensbasis wird neu aufgebaut und gegen die Prüfsumme des Abgabelaufs gehalten; Kennzahlen, Intervalle und Abbildungen werden aus den gespeicherten Antworten und Bewertungen neu berechnet. Kein API-Zugang nötig.
-2. **Eigene Bewertung** — denselben Bewertungsbogen mit eigenen Urteilen ausfüllen und Schritt 1 wiederholen. Die Zuordnung zu den Bedingungen steht getrennt in `bewertung_schluessel.csv`, die Bewertung bleibt damit verblindet möglich. Kein API-Zugang nötig.
-3. **Neuen Durchlauf erzeugen** — eigener API-Schlüssel, optional eine eigene Supabase-Instanz. Die Ergebnisse des Abgabelaufs bleiben erhalten, weil eine geänderte Konfiguration eine neue Prüfsumme erzeugt.
+1. **Nachrechnen** — Voreinstellung, `PRUEFMODUS = True`, kein Schlüssel. Die Wissensbasis wird aus den Regelheften neu aufgebaut und gegen die Prüfsumme des Abgabelaufs gehalten; Retrieval-Kennzahlen, Korrektheitsanteile, Intervalle und Abbildungen werden aus den gespeicherten Treffern, Antworten und Bewertungen neu berechnet. Es entsteht keine neue Modellantwort. *Variante:* den Bewertungsbogen mit eigenen Urteilen ausfüllen und erneut nachrechnen — die Zuordnung zu den Bedingungen steht getrennt in `bewertung_schluessel.csv`, die Bewertung bleibt damit verblindet möglich.
+2. **Suche wiederholen, Antworten wiederverwenden** — `PRUEFMODUS = False`, `ABLAGE = "github"`, eigener Schlüssel. Embeddings und Vektorsuche werden neu ausgeführt und die Retrieval-Kennzahlen neu erhoben. Die 108 protokollierten Antworten gehören zur selben Prüfsumme und gelten als erledigt; es entstehen **keine neuen Modellantworten**. Genau dieser Lauf ist in `endlauf_2026-09-27.ipynb` dokumentiert. Bricht er ab, setzt er beim nächsten Start an der richtigen Stelle fort.
+3. **Neues Experiment** — `PRUEFMODUS = False`, `ABLAGE = "colab"`, eigener Schlüssel. Das Notebook arbeitet in einem leeren Ordner der Sitzung, erzeugt alle 108 Modellantworten neu und legt einen neuen, verblindeten Bewertungsbogen an. Ausgewertet werden kann erst, wenn dieser bewertet ist. Die Ergebnisse sind ein eigener, vom Abgabestand unabhängiger Lauf; wiederholte Generierungen desselben Modells müssen nicht wortgleich ausfallen.
 
 ## Bewusste Einschränkungen
 
