@@ -1,0 +1,47 @@
+﻿question_id,beleg,zitate,chunks_mit_zitat,chunk_ids,chunks_auf_seite
+E01,grundspiel S.9,3,1,GS-09-01,2
+E02,staedte_ritter S.9,3,2,"SR-09-01, SR-09-02",2
+E03,staedte_ritter S.8,4,1,SR-08-02,4
+E04,staedte_ritter S.4,2,1,SR-04-02,2
+E05,grundspiel S.7,2,1,GS-07-01,3
+E06,staedte_ritter S.9,1,1,SR-09-01,2
+E06,staedte_ritter S.13,3,2,"SR-13-01, SR-13-03",4
+T01,grundspiel S.8,4,1,GS-08-01,2
+T02,staedte_ritter S.7,1,1,SR-07-04,4
+T02,staedte_ritter S.8,1,1,SR-08-01,4
+T03,staedte_ritter S.8,2,1,SR-08-01,4
+T04,grundspiel S.10,1,1,GS-10-02,2
+T05,staedte_ritter S.5,1,1,SR-05-02,3
+T06,staedte_ritter S.10,2,2,"SR-10-01, SR-10-02",2
+T07,staedte_ritter S.11,3,1,SR-11-01,3
+T08,staedte_ritter S.7,2,2,"SR-07-02, SR-07-03",4
+T09,staedte_ritter S.15,2,1,SR-15-01,10
+T10,staedte_ritter S.11,3,1,SR-11-02,3
+T11,staedte_ritter S.15,2,1,SR-15-10,10
+T12,grundspiel S.8,1,1,GS-08-01,2
+T12,grundspiel S.10,2,1,GS-10-01,2
+T13,staedte_ritter S.14,2,1,SR-14-01,10
+T14,staedte_ritter S.14,1,1,SR-14-06,10
+T15,staedte_ritter S.15,1,1,SR-15-04,10
+T16,staedte_ritter S.2,1,1,SR-02-02,3
+T17,staedte_ritter S.14,1,1,SR-14-01,10
+T18,staedte_ritter S.14,2,1,SR-14-08,10
+T19,staedte_ritter S.10,1,1,SR-10-02,2
+T19,staedte_ritter S.14,2,1,SR-14-02,10
+T20,staedte_ritter S.15,1,1,SR-15-06,10
+T21,staedte_ritter S.4,2,1,SR-04-01,2
+T22,staedte_ritter S.11,1,1,SR-11-01,3
+T22,staedte_ritter S.14,2,2,"SR-14-04, SR-14-08",10
+T23,grundspiel S.10,1,1,GS-10-01,2
+T23,staedte_ritter S.14,1,1,SR-14-03,10
+T24,staedte_ritter S.15,2,1,SR-15-03,10
+T25,staedte_ritter S.15,3,1,SR-15-02,10
+T26,staedte_ritter S.15,2,1,SR-15-04,10
+T27,staedte_ritter S.8,1,1,SR-08-03,4
+T27,staedte_ritter S.15,1,1,SR-15-05,10
+T28,staedte_ritter S.16,2,1,SR-16-03,5
+T29,grundspiel S.10,1,1,GS-10-01,2
+T29,staedte_ritter S.2,1,1,SR-02-02,3
+T29,staedte_ritter S.14,1,1,SR-14-08,10
+T30,staedte_ritter S.5,1,1,SR-05-02,3
+T30,staedte_ritter S.7,1,1,SR-07-04,4
