@@ -20,6 +20,8 @@ Alles, was zur Bewertung nötig ist, liegt in diesem Repository. Es wird **kein*
 
 Die Abgabefassung startet mit `PRUEFMODUS = True`; es ist nichts umzustellen. Das Notebook klont dieses Repository, lädt die beiden Regelhefte von der offiziellen Downloadseite, baut die Wissensbasis daraus neu auf und prüft, ob Fragenkatalog, Regelgruppen, Prompt- und Retrieval-Code **zeichengenau die Prüfsumme des Abgabelaufs** ergeben. Anschließend rechnet es Korrektheitsanteile, Bootstrap-Intervalle, Fehlerdiagnose und Abbildungen aus den gespeicherten Antworten und Bewertungen neu. Es entstehen keine Modellantworten und keine Kosten.
 
+Eine Grenze dieses Weges: Die **Vektorsuche wird nicht erneut ausgeführt**. Sie bräuchte neue Embeddings und damit einen API-Zugang; die Retrieval-Kennzahlen werden deshalb aus den gespeicherten Trefferlisten des Abgabelaufs übernommen. Wer auch die Suche selbst nachvollziehen will, braucht einen eigenen Schlüssel (siehe *Betriebsarten*).
+
 Neu berechnete Dateien schreibt der Prüfmodus in den Unterordner `ergebnisse/pruefmodus/`. Die abgegebenen Ergebnisdateien bleiben dabei unverändert; passen gespeicherte Bewertungen und Katalog nicht zusammen, bricht der Lauf mit einer Begründung ab, statt Dateien zu überschreiben.
 
 Wer nur lesen möchte: Beide Notebooks im Repository enthalten alle Zellausgaben des jeweiligen Laufs, auch ohne Ausführung.
@@ -132,7 +134,7 @@ Der Schalter `ABLAGE` bestimmt den Arbeitsordner. Die Abgabe verwendet `"github"
 
 Der Durchlauf setzt nach einem Abbruch an der richtigen Stelle fort: Bereits erzeugte Antworten zur aktuellen Prüfsumme gelten als erledigt.
 
-**Supabase (optional).** Das SQL aus `ergebnisse/schema.sql` einmalig im SQL-Editor des Supabase-Projekts ausführen. Das Notebook schreibt die Chunks samt Vektoren in die Datenbank und prüft, dass Supabase dieselben Treffer liefert wie der lokale Pfad. Ohne Zugangsdaten läuft alles lokal im Arbeitsspeicher.
+**Supabase (optional).** Die berichteten Ergebnisse stammen aus dem lokalen Suchpfad im Arbeitsspeicher; **der Datenbankpfad wurde in den dokumentierten Läufen nicht verwendet.** Wer ihn nutzen möchte, führt das SQL aus `ergebnisse/schema.sql` einmalig im SQL-Editor des Supabase-Projekts aus. Das Notebook schreibt die Chunks samt Vektoren in die Datenbank und vergleicht dann für jede Frage die Trefferfolge beider Pfade. Ohne Zugangsdaten läuft alles lokal.
 
 **Laufzeit und Kosten.** Der dokumentierte Datenlauf umfasste 108 Modellaufrufe (36 Fragen × 3 Bedingungen) mit rund 74.000 Tokens in etwa fünf Minuten. Die Indexierung beider Hefte mit `text-embedding-3-small` kostet weniger als einen Cent; der gesamte Durchlauf liegt im Bereich einiger Cent.
 
