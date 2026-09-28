@@ -22,7 +22,7 @@ Die Abgabefassung startet mit `PRUEFMODUS = True`; es ist nichts umzustellen. Da
 
 Eine Grenze dieses Weges: Die **Vektorsuche wird nicht erneut ausgeführt**, weil sie neue Embeddings und damit einen API-Zugang bräuchte. Die Retrieval-Kennzahlen werden stattdessen aus den gespeicherten Treffer-IDs des Abgabelaufs gegen die Gold-Chunks des Katalogs **neu berechnet** und mit den gespeicherten Werten verglichen. Wer auch die Suche selbst wiederholen will, braucht einen eigenen Schlüssel (siehe *Drei Wege der Reproduktion*).
 
-Neu berechnete Dateien schreibt der Prüfmodus in den Unterordner `ergebnisse/pruefmodus/`; die abgegebenen Ergebnisdateien bleiben unverändert. Weichen Katalog, Konfiguration, Bewertungsbogen oder Zweitbewertung vom Abgabestand ab, bricht der Lauf **vor** der Auswertung mit einer Begründung ab. Geprüft wird dabei auch, dass jeder Bewertungsfall genau die protokollierte Antwort sowie Frage, Referenz, Pflichtaussagen und Fehlerkriterien des Katalogs zeigt. Weicht nur die aus den PDFs rekonstruierte Wissensbasis ab, etwa weil der Verlag die PDF-Datei unter derselben Adresse austauscht, läuft er mit Hinweis weiter und weist drei Prüfungen als nicht bestanden aus: Gespeicherte Antworten und Bewertungen sind davon unberührt, und ein Abbruch würde das Nachrechnen ganz verhindern. PyMuPDF und tiktoken sind auf die Fassungen des Abgabelaufs festgelegt.
+Neu berechnete Dateien schreibt der Prüfmodus in den Unterordner `ergebnisse/pruefmodus/`; die abgegebenen Ergebnisdateien bleiben unverändert. Weichen Katalog, Konfiguration, Bewertungsbogen oder Zweitbewertung vom Abgabestand ab, bricht der Lauf **vor** der Auswertung mit einer Begründung ab. Geprüft wird dabei auch, dass jeder Bewertungsfall genau die protokollierte Antwort sowie Frage, Referenz, Pflichtaussagen und Fehlerkriterien des Katalogs zeigt. Weicht nur die aus den PDFs rekonstruierte Wissensbasis ab, etwa weil der Verlag die PDF-Datei unter derselben Adresse austauscht, läuft er mit Hinweis weiter und weist drei Prüfungen als nicht bestanden aus: Gespeicherte Antworten und Bewertungen sind davon unberührt, und ein Abbruch würde das Nachrechnen ganz verhindern. PyMuPDF, tiktoken und der Snowball-Stemmer sind auf feste Fassungen gesetzt.
 
 Wer nur lesen möchte: Beide Notebooks im Repository enthalten alle Zellausgaben des jeweiligen Laufs, auch ohne Ausführung.
 
@@ -40,9 +40,11 @@ Voraussetzung bleibt eine Python-Umgebung mit Internetzugang — „ohne API-Zug
 
 B gegen A: **+33,3 Prozentpunkte**, 95-%-Intervall des gepaarten Cluster-Bootstraps über 13 Regelgruppen **+14,3 bis +54,5**; ein nachträglich ergänzter exakter Permutationstest auf Regelgruppenebene ergibt p = 0,016. C gegen B: +23,3 Punkte [+2,9; +46,2] — der Permutationstest bestätigt diesen Unterschied nicht (p = 0,16).
 
-**Robustheit (nachträglich ergänzt).** Kehrt man einzelne Urteile zuungunsten der Hypothese um, bleibt das Intervall für B gegen A bei jedem der 40 möglichen Einzelfehler über null, erreicht aber bei 26 von 780 möglichen Paaren null. Der einzige Dissens der Zweitbewertung betrifft Bedingung C; alle 20 doppelt bewerteten Fälle aus A und B wurden von beiden Personen gleich beurteilt. Einordnung in Abschnitt 12.4 des Notebooks.
+**Robustheit (nachträglich ergänzt).** Ändert man einzelne Bewertungen hypothetisch zuungunsten der Hypothese, bleibt die Untergrenze des Intervalls für B gegen A bei jeder der 40 möglichen Einzeländerungen über null (niedrigster Wert +6,9), liegt aber bei 26 von 780 möglichen Paaren bei oder unter null. Das beschreibt die Empfindlichkeit gegenüber einzelnen Urteilen, keine gemessene Bewertungsverzerrung. Der einzige Dissens der Zweitbewertung betrifft Bedingung C; alle 20 doppelt bewerteten Fälle aus A und B hat die zweite Person, die vor dem Autor bewertet hat, ebenso beurteilt. Einordnung in Abschnitt 12.4 des Notebooks.
 
-Ergänzend und explorativ, weil die Fehlerarten nur von einer Person vergeben wurden, zeigt die Fehlerverteilung ein Muster: Erfundene Regeln gehen von 19 über 8 auf 4 Nennungen zurück, fälschlich übertragene Grundspielregeln von 6 über 1 auf 0 — **interne Widersprüche bleiben** (5 / 7 / 4) und betreffen mit bereitgestelltem Kontext rund die Hälfte der nicht vollständig korrekten Antworten (7 von 15 in B, 4 von 8 in C). Acht Fragen bleiben auch mit den annotierten Gold-Chunks unter *vollständig korrekt* (drei falsch, fünf teilweise korrekt); bei zwei verschlechtert der Gold-Kontext eine in B korrekte Antwort.
+Ergänzend und explorativ, weil die Fehlerarten nur von einer Person vergeben wurden, zeigt die Fehlerverteilung ein Muster: Erfundene Regeln gehen von 19 über 8 auf 4 Nennungen zurück, fälschlich übertragene Grundspielregeln von 6 über 1 auf 0 — **interne Widersprüche bleiben** (5 / 7 / 4) und betreffen mit bereitgestelltem Kontext rund die Hälfte der nicht vollständig korrekten Antworten (7 von 15 in B, 4 von 8 in C). Acht Fragen bleiben auch mit den annotierten Gold-Chunks unter *vollständig korrekt* (drei falsch, fünf teilweise korrekt); bei zwei ist die Antwort in B vollständig korrekt, in C nicht.
+
+**Retrieval im Vergleich (nachträglich ergänzt).** Auf den 30 Testfragen hat die dichte Suche keinen Vorsprung vor BM25: Sie findet bei 18 Fragen alle Gold-Chunks, BM25 mit deutscher Stammformreduktion oder Zeichen-4-Grammen bei 21, auf unveränderten Wörtern bei 19. Auf den sechs Entwicklungsfragen liegt die dichte Suche vorn. Die Unterschiede beruhen auf neun Testfragen und tragen keine Rangfolge; die Wahl der dichten Suche ist damit aber nicht durch einen Vorsprung gedeckt. Die Antwortqualität mit BM25-Kontext wurde nicht untersucht; der A/B-Befund bleibt unberührt. Abschnitt 8.2 des Notebooks.
 
 Einordnung, Grenzen und die nicht gestützte Hypothese H2 stehen in Kapitel 11 und 12 des Notebooks.
 
@@ -50,9 +52,9 @@ Einordnung, Grenzen und die nicht gestützte Hypothese H2 stehen in Kapitel 11 u
 
 Sprachmodelle beantworten Fragen zu populären Gesellschaftsspielen flüssig, aber nicht immer regelkonform. Besonders fehleranfällig sind Fälle, in denen eine Erweiterung Regeln des Grundspiels **ersetzt** statt sie zu ergänzen — bei *CATAN – Städte & Ritter* betrifft das unter anderem die Siegpunktschwelle, die Sondersiegpunkttafeln, die Gründungsphase und die Entwicklungskarten.
 
-**Forschungsfrage:** Wie verändert die automatische Bereitstellung relevanter Regelabschnitte aus den offiziellen Regelheften die Korrektheit der Antworten desselben Sprachmodells bei Fakten-, Ausnahme- und Anwendungsfragen?
+**Forschungsfrage:** Wie verändert die automatische Bereitstellung relevanter Regelabschnitte aus den offiziellen CATAN-Regelheften die Korrektheit der Antworten desselben Sprachmodells bei Fakten-, Ausnahme- und Anwendungsfragen?
 
-**Diagnostische Zusatzfrage:** Welche Fehler bleiben bestehen, wenn dem Modell alle erforderlichen Belegstellen manuell bereitgestellt werden?
+**Diagnostische Zusatzfrage:** Welche Fehler bleiben bestehen, wenn dem Modell die als erforderlich annotierten Belegstellen gezielt bereitgestellt werden?
 
 ## Versuchsaufbau
 
@@ -70,9 +72,9 @@ Bedingung C erhält die Chunks mit den Schlüsselzitaten, nicht die vollständig
 
 ## Auswertung auf zwei Ebenen
 
-**Retrieval.** Precision@k, Recall@k und F1 gegen die annotierten Belegstellen, dazu Hit@k, der Anteil vollständig gefundener Belege und der Zitat-Recall.
+**Retrieval.** Precision@k, Recall@k und F1 gegen die annotierten Belegstellen, dazu Hit@k, der Anteil vollständig gefundener Belege und der Zitat-Recall. Nachträglich verglichen mit BM25 in drei Zerlegungen (Wörter, Snowball-Stammformen, Zeichen-4-Gramme) bei gleichem Filter und gleichem k; der Vergleich braucht keinen Schlüssel und rechnet im Prüfmodus mit.
 
-**Antwortkorrektheit.** Anteil vollständig korrekter Antworten, verblindet bewertet gegen vorab festgelegte zwingende Aussagen und Fehlerkriterien. Unsicherheit über einen gepaarten **Cluster-Bootstrap auf Regelgruppenebene**, da Fragen derselben Regelgruppe inhaltlich abhängig sind. Der zusätzlich berichtete Vorzeichentest setzt unabhängige Paare voraus und wird deshalb nur ergänzend genannt; maßgeblich ist der Bootstrap. Nachträglich ergänzt, nicht vorab geplant: ein exakter Permutationstest auf Regelgruppenebene und eine Rechnung, wie viele Fehlurteile den Hauptbefund kippen würden.
+**Antwortkorrektheit.** Anteil vollständig korrekter Antworten, verblindet bewertet gegen vorab festgelegte zwingende Aussagen und Fehlerkriterien. Unsicherheit über einen gepaarten **Cluster-Bootstrap auf Regelgruppenebene**, da Fragen derselben Regelgruppe inhaltlich abhängig sind. Der zusätzlich berichtete Vorzeichentest setzt unabhängige Paare voraus und wird deshalb nur ergänzend genannt; maßgeblich ist der Bootstrap. Nachträglich ergänzt, nicht vorab geplant: ein exakter Permutationstest auf Regelgruppenebene und eine Sensitivitätsrechnung, wie viele geänderte Bewertungen den Hauptbefund kippen würden.
 
 **Zweitbewertung.** 30 Fälle wurden von einer zweiten Person handschriftlich bewertet (Übereinstimmung 96,7 %, Cohens κ = 0,933 binär). Dieser Wert ist **kein** Nachweis unabhängiger Bewerterzuverlässigkeit — die Einschränkungen stehen in Abschnitt 12.4 des Notebooks und betreffen unter anderem, dass die Fehlerarten nur von einer Person vergeben wurden.
 
@@ -80,7 +82,7 @@ Bedingung C erhält die Chunks mit den Schlüsselzitaten, nicht die vollständig
 
 ```
 ├── NLP_Hausarbeit_CATAN_RAG.ipynb   Abgabefassung, im Prüfmodus ausgeführt, mit allen Zellausgaben
-├── endlauf_2026-09-27.ipynb         derselbe Code im Datenlauf ausgeführt: erneute Suche, die 108
+├── endlauf_2026-09-28.ipynb         derselbe Code im Datenlauf ausgeführt: erneute Suche, die 108
 │                                    protokollierten Modellantworten mit Tokenzahlen,
 │                                    Laufzeit und bestätigter Modellversion
 ├── README.md
@@ -138,17 +140,17 @@ Der Schalter `ABLAGE` bestimmt den Arbeitsordner. Die Abgabe verwendet `"github"
 ## Drei Wege der Reproduktion
 
 1. **Nachrechnen** — Voreinstellung, `PRUEFMODUS = True`, kein Schlüssel. Die Wissensbasis wird aus den Regelheften neu aufgebaut und gegen die Prüfsumme des Abgabelaufs gehalten; Retrieval-Kennzahlen, Korrektheitsanteile, Intervalle und Abbildungen werden aus den gespeicherten Treffern, Antworten und Bewertungen neu berechnet. Es entsteht keine neue Modellantwort. *Variante:* den Bewertungsbogen mit eigenen Urteilen ausfüllen und erneut nachrechnen — die Zuordnung zu den Bedingungen steht getrennt in `bewertung_schluessel.csv`, die Bewertung bleibt damit verblindet möglich.
-2. **Suche wiederholen, Antworten wiederverwenden** — `PRUEFMODUS = False`, `ABLAGE = "github"`, eigener Schlüssel. Embeddings und Vektorsuche werden neu ausgeführt und die Retrieval-Kennzahlen neu erhoben. Die 108 protokollierten Antworten gehören zur selben Prüfsumme und gelten als erledigt; es entstehen **keine neuen Modellantworten**. Genau dieser Lauf ist in `endlauf_2026-09-27.ipynb` dokumentiert. Bricht er ab, setzt er beim nächsten Start an der richtigen Stelle fort.
+2. **Suche wiederholen, Antworten wiederverwenden** — `PRUEFMODUS = False`, `ABLAGE = "github"`, eigener Schlüssel. Embeddings und Vektorsuche werden neu ausgeführt und die Retrieval-Kennzahlen neu erhoben. Die 108 protokollierten Antworten gehören zur selben Prüfsumme und gelten als erledigt; es entstehen **keine neuen Modellantworten**. Genau dieser Lauf ist in `endlauf_2026-09-28.ipynb` dokumentiert; die 108 Antworten selbst wurden am 24.09.2026 erzeugt (Zeitstempel im Laufprotokoll). Bricht er ab, setzt er beim nächsten Start an der richtigen Stelle fort.
 3. **Neues Experiment** — `PRUEFMODUS = False`, `ABLAGE = "colab"`, eigener Schlüssel. In einer frischen Colab-Sitzung beginnt das Notebook mit einem leeren Ordner (in einer bereits benutzten Sitzung setzt es auf den dort vorhandenen Dateien auf), erzeugt alle 108 Modellantworten neu und legt einen neuen, verblindeten Bewertungsbogen an. Ausgewertet werden kann erst, wenn dieser bewertet ist. Die Ergebnisse sind ein eigener, vom Abgabestand unabhängiger Lauf; wiederholte Generierungen desselben Modells müssen nicht wortgleich ausfallen.
 
 ## Bewusste Einschränkungen
 
 - **Vorwissen des Modells.** Dass das Modell Vorwissen zu CATAN mitbringt, ist eine plausible Annahme; Umfang und Editionsstand dieses Materials in den Trainingsdaten sind unbekannt. Bedingung A misst deshalb „Modell mit unkontrolliertem Vorwissen", nicht „Modell ohne Wissen".
 - **Ungleiche Fragetypverteilung.** Ausnahme- und Anwendungsfragen sind bewusst übergewichtet. Ergebnisse werden primär je Fragetyp berichtet; der gepoolte Wert ist die Grundlage des vorab festgelegten Hauptvergleichs B gegen A und beschreibt diesen Katalog, keine „typische Leistung".
-- **Statistische Aussagekraft.** 30 Testfragen in 13 Regelgruppen; der Bootstrap arbeitet effektiv mit 13 Einheiten. Die praktische Nachweisgrenze wurde vorab bei 20–25 Prozentpunkten genannt. Kleine oder moderate Effekte kann diese Arbeit nicht nachweisen, und der Katalog wurde nicht vergrößert, um Signifikanz zu erreichen.
-- **Nur drei Grundspielfragen.** Sie dienen als Kontrolle für das Vorwissen, tragen aber keine eigene Aussage über das Grundspiel.
+- **Statistische Aussagekraft.** 30 Testfragen in 13 Regelgruppen; der Bootstrap arbeitet effektiv mit 13 Einheiten. Als grobe Orientierung wurden vorab 20–25 Prozentpunkte genannt; eine berechnete Nachweisgrenze ist das nicht. Kleine oder moderate Effekte kann diese Arbeit nicht nachweisen, und der Katalog wurde nicht vergrößert, um Signifikanz zu erreichen.
+- **Nur drei Grundspielfragen.** Sie erlauben eine beschreibende Gegenüberstellung mit den Erweiterungsfragen, aber keine belastbare Aussage über das Grundspiel oder das Vorwissen des Modells.
 - **Ein Durchlauf je Frage und Bedingung.** Die Streuung wiederholter Generierungen ist nicht gemessen und in den Intervallen nicht enthalten.
-- **Bewertung.** Die Bewertung ist nicht unabhängig von Vorkenntnis entstanden; die Fehlerarten wurden nur von einer Person vergeben. Der Hauptbefund übersteht jedes einzelne Fehlurteil, aber nicht jedes Paar. Einzelheiten in Abschnitt 12.4 des Notebooks.
+- **Bewertung.** Die Bewertung ist nicht unabhängig von Vorkenntnis entstanden; die Fehlerarten wurden nur von einer Person vergeben. In der Sensitivitätsrechnung hält der Hauptbefund jeder einzelnen geänderten Bewertung stand, nicht aber jedem Paar. Einzelheiten in Abschnitt 12.4 des Notebooks.
 - **Herkunft der Fragen.** **Alle 36 Fragen sind KI-Entwürfe** (Feld `entwurf` = `ki_entwurf`). Die Prüfung gegen das Regelheft und die Freigabe erfolgten durch den Autor. Eine Auswahlverzerrung zugunsten von Regeln, die das Antwortmodell ohnehin beherrscht, ist nicht auszuschließen.
 - **Bedingung C** ist eine Diagnose, keine Obergrenze. „B falsch, C richtig" ist ein Hinweis auf ein Retrievalproblem, keine bewiesene Ursache.
 
@@ -157,6 +159,8 @@ Der Schalter `ABLAGE` bestimmt den Arbeitsordner. Die Abgabe verwendet `"github"
 Bei dieser Arbeit wurden Sprachmodelle in erheblichem Umfang als Werkzeug eingesetzt. Der vollständige, nach Arbeitsschritten getrennte Hinweis steht in **Abschnitt 13 des Notebooks** und ist Teil der Abgabe. In Kurzform:
 
 **Mit KI-Unterstützung entstanden** das Versuchsdesign und der Programmcode, alle 36 Fragen als Entwürfe, die Referenzantworten, Pflichtaussagen und Fehlerkriterien, ein Teil der annotierten Belegstellen sowie Gliederung, Formulierung und Vorschläge zur Einordnung der Ergebnisse.
+
+**Nicht verwendet** wurden zwei von Sprachmodellen erzeugte Bewertungssätze. Den ersten hatte der Autor vor seiner eigenen Bewertung gesehen (Einschränkung in Abschnitt 12.4); der zweite entstand erst, nachdem die eigene Bewertung festgeschrieben war.
 
 **Eigenleistung des Autors** sind die Prüfung jeder Referenzantwort, jeder Belegstelle und jeder Seitenangabe am Regelheft, die Auswahl eines Teils der Regelstellen, die Durchführung der Läufe, die Bewertung der 90 Testfälle und alle inhaltlichen Entscheidungen.
 
@@ -180,5 +184,7 @@ Eine Prozentangabe zum Gesamtanteil wird bewusst nicht gemacht, weil sie nicht b
 14. McNemar, Q. (1947): *Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages.* Psychometrika 12(2), S. 153–157. https://doi.org/10.1007/BF02295996
 15. Manning, C. D.; Raghavan, P.; Schütze, H. (2008): *Introduction to Information Retrieval.* Cambridge: Cambridge University Press, Kap. 8 (Evaluation in Information Retrieval).
 16. Liu, N. F.; Lin, K.; Hewitt, J.; Paranjape, A.; Bevilacqua, M.; Petroni, F.; Liang, P. (2024): *Lost in the Middle: How Language Models Use Long Contexts.* Transactions of the Association for Computational Linguistics 12, S. 157–173. https://doi.org/10.1162/tacl_a_00638
+17. Robertson, S.; Zaragoza, H. (2009): *The Probabilistic Relevance Framework: BM25 and Beyond.* Foundations and Trends in Information Retrieval 3(4), S. 333–389. https://doi.org/10.1561/1500000019
+18. McNamee, P.; Mayfield, J. (2004): *Character N-Gram Tokenization for European Language Text Retrieval.* Information Retrieval 7(1), S. 73–97. https://doi.org/10.1023/B:INRT.0000009441.78971.be
 
-Die Einträge 5 und 7 sind die im Modul empfohlenen Lehrbücher. Technische Dokumentation (OpenAI-Modelle, pgvector) und die Primärquellen des Korpus stehen im Notebook, Abschnitt 13.
+Die Einträge 5 und 7 sind die im Modul empfohlenen Lehrbücher. Technische Dokumentation (OpenAI-Modelle, pgvector, Snowball-Stemmer) und die Primärquellen des Korpus stehen im Notebook, Abschnitt 13.
