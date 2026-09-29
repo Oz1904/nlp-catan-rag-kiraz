@@ -1,0 +1,273 @@
+<title>CATAN-Zweitbewertung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: Fallliste links, Bewertungsmaske rechts; auf dem Telefon untereinander. */
+:root {
+  --bg: #f5f6f4; --panel: #ffffff; --fg: #1d2421; --muted: #5d6863; --line: #d9ddd9;
+  --accent: #2c5f7c; --accent-soft: #e3edf2;
+  --ok: #2f7a4a; --ok-soft: #e2f1e7; --warn: #9a6a12; --warn-soft: #f7ecd5;
+  --bad: #a3372f; --bad-soft: #f6e1de;
+  --f-ui: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-read: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121614; --panel: #1b201e; --fg: #e4e9e6; --muted: #9aa6a0; --line: #303834;
+  --accent: #7fb2cf; --accent-soft: #1e2c34;
+  --ok: #7cc795; --ok-soft: #19291f; --warn: #e0b35c; --warn-soft: #2d2616;
+  --bad: #ec8b82; --bad-soft: #321c1a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121614; --panel: #1b201e; --fg: #e4e9e6; --muted: #9aa6a0; --line: #303834;
+  --accent: #7fb2cf; --accent-soft: #1e2c34;
+  --ok: #7cc795; --ok-soft: #19291f; --warn: #e0b35c; --warn-soft: #2d2616;
+  --bad: #ec8b82; --bad-soft: #321c1a; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-ui); font-size: 15px; line-height: 1.5; padding-inline: 16px; padding-block: 0 48px }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center }
+header.top h1 { font-size: 16px; margin: 0; font-weight: 700; letter-spacing: .01em }
+.meta { font-family: var(--f-mono); font-size: 12px; color: var(--muted) }
+.fortschritt { display: flex; align-items: center; gap: 8px; margin-left: auto }
+.balken { width: 140px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden }
+.balken span { display: block; height: 100%; background: var(--accent) }
+.hinweis { margin-block: 12px; padding: 10px 12px; border-radius: 6px; font-size: 14px }
+.hinweis.fehler { background: var(--bad-soft); color: var(--bad) }
+.hinweis.info { background: var(--accent-soft); color: var(--fg) }
+main { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 20px; margin-top: 16px; max-width: 1180px; margin-inline: auto }
+nav.liste { align-self: start; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 64px); max-height: calc(100vh - 90px); overflow: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px }
+@media (max-width: 760px) { main { grid-template-columns: minmax(0, 1fr) } nav.liste { position: static; max-height: 200px } }
+.gruppe { display: grid; grid-template-columns: 34px repeat(4, 1fr); gap: 4px; align-items: center; margin-bottom: 4px }
+.gruppe b { font-size: 11px; color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums }
+.chip { font-family: var(--f-mono); font-size: 11px; border: 1px solid var(--line); background: transparent; color: var(--fg); border-radius: 4px; padding: 3px 0; cursor: pointer }
+.chip.fertig { background: var(--ok-soft); border-color: var(--ok); color: var(--ok) }
+.chip.aktiv { outline: 2px solid var(--accent); outline-offset: 1px }
+.chip:focus-visible, button:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+section.fall { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; min-width: 0 }
+.kopf { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; font-size: 13px; color: var(--muted) }
+.kopf .id { font-family: var(--f-mono); font-weight: 600; color: var(--fg) }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 20px 0 6px; font-weight: 600 }
+.frage { font-size: 15px; font-weight: 600; margin: 8px 0 0; text-wrap: pretty }
+.antwort { font-family: var(--f-read); font-size: 17px; line-height: 1.6; max-width: 70ch; white-space: pre-wrap; margin: 0 }
+.referenz { font-size: 14px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 12px; max-width: 75ch; margin: 0 }
+.zeile { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 14px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line) }
+.zeile:first-of-type { border-top: 0 }
+.zeile .text { min-width: 0 }
+.zeile .erkl { display: block; font-size: 12.5px; color: var(--muted) }
+@media (max-width: 560px) { .zeile { grid-template-columns: minmax(0, 1fr) } }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden }
+.seg button { font: 500 13px var(--f-ui); border: 0; background: transparent; color: var(--fg); padding: 6px 12px; cursor: pointer; border-left: 1px solid var(--line) }
+.seg button:first-child { border-left: 0 }
+.seg button[aria-pressed="true"][data-w="enthalten"], .seg button[aria-pressed="true"][data-w="nein"] { background: var(--ok-soft); color: var(--ok); font-weight: 700 }
+.seg button[aria-pressed="true"][data-w="fehlt"] { background: var(--warn-soft); color: var(--warn); font-weight: 700 }
+.seg button[aria-pressed="true"][data-w="falsch"], .seg button[aria-pressed="true"][data-w="ja"] { background: var(--bad-soft); color: var(--bad); font-weight: 700 }
+.seg button:disabled { cursor: default }
+.zeile.offen .text::before { content: "offen · "; color: var(--warn); font-size: 12px; font-weight: 600 }
+textarea { width: 100%; min-height: 70px; font: 14px var(--f-ui); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px }
+textarea.pflicht { border-color: var(--warn) }
+.aktionen { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 18px }
+.knopf { font: 600 14px var(--f-ui); border-radius: 6px; padding: 9px 16px; cursor: pointer; border: 1px solid var(--line); background: transparent; color: var(--fg) }
+.knopf.haupt { background: var(--accent); border-color: var(--accent); color: var(--panel) }
+.knopf:disabled { opacity: .45; cursor: default }
+.status { font-size: 13px; color: var(--muted) }
+details.regeln { max-width: 1180px; margin: 14px auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; font-size: 14px }
+details.regeln summary { cursor: pointer; font-weight: 600 }
+details.regeln li { margin-bottom: 4px }
+.abschluss { max-width: 1180px; margin: 16px auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px }
+.abschluss h3 { margin: 0 0 6px; font-size: 15px }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+</style>
+
+<header class="top">
+  <h1>CATAN-Zweitbewertung</h1>
+  <span class="meta" id="rubrik"></span>
+  <div class="fortschritt"><div class="balken"><span id="balken"></span></div><span class="meta" id="zaehler"></span></div>
+</header>
+<div id="meldung" hidden></div>
+
+<details class="regeln" open>
+  <summary>Anleitung für die zweite bewertende Person</summary>
+  <ul>
+    <li>Bitte allein bewerten: ohne KI-Werkzeuge, ohne Rücksprache mit dem Autor und ohne seine Bewertungen anzusehen.</li>
+    <li>Die Regelhefte liegen daneben: <a href="https://www.catan.de/sites/default/files/2025-03/4002051684655_CAT_NE_Basis34_Manual_DE_web.pdf" target="_blank" rel="noopener">CATAN – Das Spiel</a> und <a href="https://www.catan.de/sites/default/files/2025-03/400205684754_CAT_NE_SuR_Manual_DE_web.pdf" target="_blank" rel="noopener">Städte &amp; Ritter</a>. Jede Aussage, die als regelwidrig markiert wird, am Heft prüfen.</li>
+    <li>Je Fall jede Zeile setzen, dann „Speichern und weiter“. Eingaben bleiben in diesem Browser erhalten, auch nach dem Schließen.</li>
+    <li>Am Ende „CSV herunterladen“ und die Datei unverändert an den Autor schicken. Er lädt sie ungeöffnet zur Auswertung hoch.</li>
+  </ul>
+</details>
+<details class="regeln">
+  <summary>Merkmale kurz erklärt (verbindlich ist RUBRIK.md)</summary>
+  <ul>
+    <li><b>Pflichtaussage</b>: <i>enthalten</i> = sinngleich getroffen, nirgends das Gegenteil. <i>fehlt</i> = nicht oder nur unvollständig genannt. <i>falsch</i> = abweichende oder gegenteilige Angabe, auch wenn an anderer Stelle die richtige steht; bei „weil …“ auch eine regelwidrige Begründung.</li>
+    <li><b>Fehlerkriterium</b>: <i>ja</i>, wenn die Antwort die Behauptung an irgendeiner Stelle aufstellt, auch wenn sie sich später korrigiert.</li>
+    <li><b>R</b>: Die verlangte Entscheidung stützt sich ausschließlich oder überwiegend auf eine Regel, die es nicht gibt oder die anders lautet.</li>
+    <li><b>Z</b>: eine weitere Aussage widerspricht dem Heft (gefragt oder ungefragt), nicht schon unter P, K oder R erfasst; auch eine allgemeine Aussage, die in einem von Frage oder Antwort genannten Fall falsch wird. Nicht: Schweigen des Hefts, Zweckangaben, Quellenangaben.</li>
+    <li><b>W</b>: zwei Aussagen derselben Antwort schließen einander aus. Widerspruch zum Heft oder zur Frage ist kein W.</li>
+    <li><b>G</b>: Grundspielregel auf <i>Städte &amp; Ritter</i> angewendet, die die Erweiterung ersetzt oder abwandelt. Beeinflusst die Stufe nicht.</li>
+    <li><b>Notiz</b> ist Pflicht bei P = falsch oder R, Z, W = ja; bei Z mit Seitenangabe.</li>
+  </ul>
+</details>
+
+<main>
+  <nav class="liste" id="liste" aria-label="Fälle"></nav>
+  <section class="fall" id="fall"></section>
+</main>
+
+<div class="abschluss" id="abschluss" hidden></div>
+
+<script>
+const BOGEN = /*__BOGEN__*/null;
+const FAELLE = BOGEN.faelle;
+const MERKMALE = [
+  { key: "r", titel: "R – Entscheidung auf erfundene Regel gestützt", erkl: "Trägt eine nicht existierende oder falsch wiedergegebene Regel die verlangte Entscheidung?" },
+  { key: "z", titel: "Z – falsche Zusatzbehauptung", erkl: "Eine weitere Aussage widerspricht dem Heft (nicht schon unter P, K, R)." },
+  { key: "w", titel: "W – Selbstwiderspruch", erkl: "Zwei Aussagen derselben Antwort schließen einander aus." },
+  { key: "g", titel: "G – Grundspielregel übertragen", erkl: "Nur Fehleranalyse, keine Auswirkung auf die Stufe." },
+];
+const gespeichert = {};      // id -> gespeicherte Bewertung aus der Datenbank
+const entwuerfe = {};        // id -> aktuelle, noch nicht gespeicherte Eingaben
+let aktuell = 0, db = null, abgeschlossen = null, speichert = false;
+const $ = (s) => document.querySelector(s);
+const el = (tag, attrs = {}, ...kinder) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") e.className = v; else if (k === "text") e.textContent = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
+  }
+  for (const k of kinder) if (k != null) e.append(k);
+  return e;
+};
+
+function leer(f) { return { p: f.pflicht.map(() => null), k: f.kriterien.map(() => null), r: null, z: null, w: null, g: null, notiz: "" }; }
+function zustand(f) {
+  if (!entwuerfe[f.id]) {
+    const s = gespeichert[f.id];
+    entwuerfe[f.id] = s ? { p: [...s.p], k: [...s.k], r: s.r, z: s.z, w: s.w, g: s.g, notiz: s.notiz || "" } : leer(f);
+  }
+  return entwuerfe[f.id];
+}
+function notizPflicht(e) { return e.p.includes("falsch") || e.r === "ja" || e.z === "ja" || e.w === "ja"; }
+function vollstaendig(e) {
+  return e.p.every(Boolean) && e.k.every(Boolean) && ["r", "z", "w", "g"].every((k) => e[k])
+    && (!notizPflicht(e) || e.notiz.trim().length > 0);
+}
+function geaendert(f) {
+  const e = entwuerfe[f.id], s = gespeichert[f.id];
+  if (!e) return false;
+  if (!s) return true;
+  return JSON.stringify([e.p, e.k, e.r, e.z, e.w, e.g, e.notiz.trim()]) !== JSON.stringify([s.p, s.k, s.r, s.z, s.w, s.g, (s.notiz || "").trim()]);
+}
+
+function meldung(text, art = "info") {
+  const m = $("#meldung");
+  if (!text) { m.hidden = true; return; }
+  m.className = "hinweis " + art; m.textContent = text; m.hidden = false;
+}
+
+function segment(werte, wert, onwahl, gesperrt) {
+  const g = el("div", { class: "seg", role: "group" });
+  for (const w of werte) {
+    g.append(el("button", { type: "button", "data-w": w, "aria-pressed": String(wert === w), text: w,
+      ...(gesperrt ? { disabled: "" } : {}), onclick: () => onwahl(w) }));
+  }
+  return g;
+}
+
+function zeichneListe() {
+  const nav = $("#liste"); nav.replaceChildren();
+  const gruppen = {};
+  FAELLE.forEach((f, i) => (gruppen[f.gruppe] ||= []).push(i));
+  for (const [g, idx] of Object.entries(gruppen)) {
+    const row = el("div", { class: "gruppe" }, el("b", { text: "F" + g }));
+    for (const i of idx) {
+      const f = FAELLE[i];
+      row.append(el("button", { type: "button", class: "chip" + (gespeichert[f.id] ? " fertig" : "") + (i === aktuell ? " aktiv" : ""),
+        text: f.id.slice(1), title: f.id, onclick: () => gehe(i) }));
+    }
+    nav.append(row);
+  }
+  const n = Object.keys(gespeichert).filter((id) => FAELLE.some((f) => f.id === id)).length;
+  $("#zaehler").textContent = `${n} / ${FAELLE.length} gespeichert`;
+  $("#balken").style.width = (100 * n / FAELLE.length) + "%";
+  zeichneAbschluss(n);
+}
+
+function zeichneFall() {
+  const f = FAELLE[aktuell], e = zustand(f), gesperrt = !!abgeschlossen || !db;
+  const box = $("#fall"); box.replaceChildren();
+  box.append(el("div", { class: "kopf" },
+    el("span", {}, el("span", { class: "id", text: f.id }), ` · Frage ${f.gruppe} von 30 · Antwort ${f.pos} von ${f.n_in_gruppe}`),
+    el("span", { text: gespeichert[f.id] ? "gespeichert " + new Date(gespeichert[f.id].gespeichert).toLocaleString("de-DE") : "noch nicht gespeichert" })));
+  box.append(el("p", { class: "frage", text: f.frage }));
+  box.append(el("h2", { text: "Antwort" }), el("p", { class: "antwort", text: f.antwort }));
+  box.append(el("h2", { text: "Referenzantwort" }), el("p", { class: "referenz", text: f.referenz }));
+
+  const aktual = () => { zeichneFall(); };
+  box.append(el("h2", { text: "Pflichtaussagen" }));
+  f.pflicht.forEach((t, j) => box.append(el("div", { class: "zeile" + (e.p[j] ? "" : " offen") },
+    el("div", { class: "text", text: t }),
+    segment(["enthalten", "fehlt", "falsch"], e.p[j], (w) => { e.p[j] = w; aktual(); }, gesperrt))));
+  box.append(el("h2", { text: "Fehlerkriterien" }));
+  f.kriterien.forEach((t, j) => box.append(el("div", { class: "zeile" + (e.k[j] ? "" : " offen") },
+    el("div", { class: "text", text: t }),
+    segment(["nein", "ja"], e.k[j], (w) => { e.k[j] = w; aktual(); }, gesperrt))));
+  box.append(el("h2", { text: "Weitere Merkmale" }));
+  for (const m of MERKMALE) box.append(el("div", { class: "zeile" + (e[m.key] ? "" : " offen") },
+    el("div", { class: "text" }, m.titel, el("span", { class: "erkl", text: m.erkl })),
+    segment(["nein", "ja"], e[m.key], (w) => { e[m.key] = w; aktual(); }, gesperrt)));
+  box.append(el("h2", { text: notizPflicht(e) ? "Notiz (Pflicht: was ist falsch, bei Z mit Seite)" : "Notiz (optional)" }));
+  const ta = el("textarea", { id: "notiz", class: notizPflicht(e) && !e.notiz.trim() ? "pflicht" : "", ...(gesperrt ? { disabled: "" } : {}) });
+  ta.value = e.notiz;
+  ta.addEventListener("input", () => { e.notiz = ta.value; knopf.disabled = gesperrt || !vollstaendig(e) || speichert; ta.className = notizPflicht(e) && !e.notiz.trim() ? "pflicht" : ""; $("#status").textContent = vollstaendig(e) ? "bereit zum Speichern" : "Alle Merkmale ausfüllen" + (notizPflicht(e) && !e.notiz.trim() ? ", Notiz ergänzen" : ""); });
+  box.append(ta);
+
+  const knopf = el("button", { type: "button", class: "knopf haupt", id: "speichern", text: "Speichern und weiter", onclick: speichere });
+  knopf.disabled = gesperrt || !vollstaendig(e) || speichert;
+  box.append(el("div", { class: "aktionen" },
+    el("button", { type: "button", class: "knopf", text: "Zurück", onclick: () => gehe(Math.max(0, aktuell - 1)), ...(aktuell === 0 ? { disabled: "" } : {}) }),
+    knopf,
+    el("span", { class: "status", id: "status", text: vollstaendig(e) ? (geaendert(f) ? "bereit zum Speichern" : "") : "Alle Merkmale ausfüllen" + (notizPflicht(e) && !e.notiz.trim() ? ", Notiz ergänzen" : "") })));
+}
+
+function gehe(i) { aktuell = i; zeichneListe(); zeichneFall(); try { localStorage.setItem("z2_pos", String(i)); } catch (_) {} window.scrollTo({ top: 0 }); }
+
+const SPEICHER = "catan_zweit_" + BOGEN.rubrik_sha256.slice(0, 12);
+function sichere() { try { localStorage.setItem(SPEICHER, JSON.stringify(gespeichert)); } catch (_) {} }
+async function speichere() {
+  const f = FAELLE[aktuell], e = zustand(f);
+  if (abgeschlossen || !vollstaendig(e) || speichert) return;
+  const doc = { id: f.id, p: e.p, k: e.k, r: e.r, z: e.z, w: e.w, g: e.g, notiz: e.notiz.trim(),
+    gespeichert: new Date().toISOString(), rubrik_sha256: BOGEN.rubrik_sha256 };
+  gespeichert[f.id] = doc; delete entwuerfe[f.id]; sichere();
+  const naechster = FAELLE.findIndex((x, i) => i > aktuell && !gespeichert[x.id]);
+  gehe(naechster >= 0 ? naechster : Math.min(aktuell + 1, FAELLE.length - 1));
+}
+
+function csvFeld(x) { const s = String(x ?? ""); return /[",\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+function exportiere() {
+  const kopf = ["fall_id", "p", "k", "r", "z", "w", "g", "notiz", "gespeichert", "rubrik_sha256"];
+  const zeilen = FAELLE.filter((f) => gespeichert[f.id]).map((f) => { const d = gespeichert[f.id];
+    return [d.id, d.p.join("|"), d.k.join("|"), d.r, d.z, d.w, d.g, d.notiz, d.gespeichert, d.rubrik_sha256].map(csvFeld).join(","); });
+  const blob = new Blob(["\ufeff" + [kopf.join(","), ...zeilen].join("\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  a.download = "zweitbewertung_v2.csv"; document.body.append(a); a.click(); a.remove();
+}
+
+let bestaetigen = false;
+function zeichneAbschluss(n) {
+  const a = $("#abschluss"); a.hidden = false;
+  a.replaceChildren(
+    el("h3", { text: n < FAELLE.length ? `Zwischenstand: ${n} von ${FAELLE.length} Fällen gespeichert` : "Alle Fälle gespeichert" }),
+    el("p", { text: n < FAELLE.length ? "Die Datei kann jederzeit als Sicherung heruntergeladen werden. Für die Auswertung zählt nur die vollständige Datei." : "Jetzt die CSV-Datei herunterladen und unverändert an den Autor schicken." }),
+    el("button", { type: "button", class: "knopf haupt", text: "CSV herunterladen", onclick: exportiere }));
+}
+
+document.addEventListener("keydown", (ev) => {
+  if ((ev.ctrlKey || ev.metaKey) && ev.key === "Enter") { ev.preventDefault(); speichere(); }
+});
+
+$("#rubrik").textContent = "Rubrik " + BOGEN.rubrik_sha256.slice(0, 12) + " · Seed " + BOGEN.seed;
+try { const p = parseInt(localStorage.getItem("z2_pos") || "0", 10); if (p >= 0 && p < FAELLE.length) aktuell = p; } catch (_) {}
+try { Object.assign(gespeichert, JSON.parse(localStorage.getItem(SPEICHER) || "{}")); } catch (_) {}
+db = true;
+zeichneListe(); zeichneFall();
+</script>
