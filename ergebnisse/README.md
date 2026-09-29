@@ -20,6 +20,7 @@ Alle Dateien in diesem Ordner stammen aus den Läufen des Notebooks. Der Prüfmo
 | `bootstrap.csv` | alle Vergleiche mit Permutationstest und Bootstrap-Intervall (10.000 Ziehungen) |
 | `fehlerdiagnose.csv`, `fehlerprofil.csv` | Befund je Frage aus B/C und Retrieval, Merkmalshäufigkeiten je Bedingung |
 | `retrieval_metriken.csv`, `topk_justierung.*`, `segmentierung_pruefung.csv`, `konstruktionsvaliditaet.csv` | Retrieval-Kennzahlen und Kontrollen zu Wissensbasis und Katalog |
+| `abschlusspruefung_pruefmodus_2026-09-29.csv`, `versionen_pruefmodus_2026-09-29.csv` | Abschlussprüfung (24 von 24) und Programmversionen des dokumentierten Prüflaufs vom 29.09.2026 auf Stand `5a2ccea`, aus der Ausgabe des abgegebenen Notebooks übernommen |
 | `abschlusspruefung_datenlauf_2026-09-28.csv` | historisch: Abschlusskontrolle des Datenlaufs vom 28.09.2026 (18 Prüfungen, vor der Überarbeitung) |
 | `versionen.csv` | Programmversionen des Datenlaufs vom 28.09.2026 |
 | `schema.sql` | optionales Supabase-/pgvector-Schema |

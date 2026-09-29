@@ -25,7 +25,9 @@ Der Prüflauf macht Folgendes:
 - Er prüft, ob jeder Bewertungsfall genau die protokollierte Antwort zeigt.
 - Er berechnet danach alle Kennzahlen, Tests, Intervalle und Abbildungen aus den gespeicherten Antworten und Bewertungen neu.
 
-Jeder Prüflauf legt in Colab einen eigenen, frischen Klon an und gibt den geprüften Commit aus; ein Ordner aus einem früheren Lauf wird weder verwendet noch verändert. Neu berechnete Dateien landen in `ergebnisse/pruefmodus/`; die abgegebenen Dateien bleiben unverändert. Die dichte Suche wird nicht wiederholt, weil sie neue Embeddings bräuchte. Die Retrieval-Kennzahlen werden aus den gespeicherten Treffern neu berechnet.
+Jeder Prüflauf legt in Colab einen eigenen, frischen Klon an und gibt den geprüften Commit aus; ein Ordner aus einem früheren Lauf wird weder verwendet noch verändert. Neu berechnete Dateien landen in `ergebnisse/pruefmodus/`; die abgegebenen Dateien bleiben unverändert.
+
+**Dokumentierter Prüflauf.** Das abgegebene Notebook wurde am 29.09.2026 in einer frischen Colab-Sitzung ohne API-Schlüssel im Prüfmodus vollständig ausgeführt (Zellen 1–33 fortlaufend). Geprüft wurde der Datenstand `5a2ccea` des Branches `abgabe`; 24 von 24 Prüfungen sind bestanden. Der Bericht liegt in `ergebnisse/abschlusspruefung_pruefmodus_2026-09-29.csv`, die Programmversionen des Laufs in `ergebnisse/versionen_pruefmodus_2026-09-29.csv`. Der Abgabe-Commit ändert gegenüber `5a2ccea` nur das Notebook (Ausgaben dieses Laufs), diese beiden Berichtsdateien und die beiden README-Dateien; alle Daten, Bewertungen und der Code sind unverändert. Die Prüfungen kontrollieren Vollständigkeit, Zuordnung und Reproduzierbarkeit, nicht die inhaltliche Richtigkeit der Bewertungen. Die dichte Suche wird nicht wiederholt, weil sie neue Embeddings bräuchte. Die Retrieval-Kennzahlen werden aus den gespeicherten Treffern neu berechnet.
 
 ## Ergebnisse in Kurzform
 
@@ -67,9 +69,12 @@ Die erste Bewertung (v1) der 90 Antworten aus A, B und C enthielt dokumentierte 
 ## Was im Repository liegt
 
 ```
-├── NLP_Hausarbeit_CATAN_RAG.ipynb   Ausarbeitung, im Prüfmodus ausgeführt
-├── endlauf_2026-09-28.ipynb         Datenlauf des Hauptversuchs: erneute Suche, die 108 protokollierten
-│                                    Antworten (erzeugt am 24.09.2026); Auswertung dort noch nach v1
+├── NLP_Hausarbeit_CATAN_RAG.ipynb   Ausarbeitung, im Prüfmodus ausgeführt (maßgebliche Fassung)
+├── endlauf_2026-09-28.ipynb         Laufbeleg des Hauptversuchs, unverändert: erneute Suche, die 108
+│                                    protokollierten Antworten (erzeugt am 24.09.2026). Text und
+│                                    Auswertung dort auf damaligem Stand (Bewertung v1)
+├── zusatz_d_lauf_2026-09-29.ipynb   Laufbeleg von Bedingung D, unverändert: Erzeugung der 30 Antworten.
+│                                    Text und Auswertung dort auf damaligem Stand
 ├── bewertung_v2/
 │   ├── RUBRIK.md                    eingefrorene Rubrik v2 und vorab festgelegte Auswertung
 │   ├── stufe.py                     Regel Merkmale → Stufe
