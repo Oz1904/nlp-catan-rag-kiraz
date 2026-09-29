@@ -5,7 +5,7 @@ Fachhochschule Südwestfalen · M.Sc. Angewandte Künstliche Intelligenz
 
 **Autor:** Ozan Kiraz · **Matrikelnummer:** 30500695
 **Betreuung:** Prof. Dr. Christian Gawron
-**Abgabe:** 29. September 2026 · **Abgabestand:** Tag `abgabe`
+**Abgabe:** 29. September 2026 · **Abgabestand:** Branch `abgabe` (nach der Abgabe unverändert)
 
 [![In Colab öffnen](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Oz1904/nlp-catan-rag-kiraz/blob/abgabe/NLP_Hausarbeit_CATAN_RAG.ipynb)
 
@@ -16,7 +16,7 @@ Die Ausarbeitung ist das Notebook `NLP_Hausarbeit_CATAN_RAG.ipynb`. Es enthält 
 1. Notebook über den Colab-Link oben öffnen.
 2. *Laufzeit → Alle ausführen*.
 
-Voreingestellt ist `PRUEFMODUS = True`. Es wird kein API-Schlüssel, kein Google Drive und keine Datenbank benötigt, und es entstehen keine Kosten. Eine Internetverbindung ist nötig: Das Notebook klont dieses Repository am Tag `abgabe` und lädt die Regelhefte von catan.de.
+Voreingestellt ist `PRUEFMODUS = True`. Es wird kein API-Schlüssel, kein Google Drive und keine Datenbank benötigt, und es entstehen keine Kosten. Eine Internetverbindung ist nötig: Das Notebook klont den Abgabestand (Branch `abgabe`) dieses Repositorys und lädt die Regelhefte von catan.de.
 
 Der Prüflauf macht Folgendes:
 
