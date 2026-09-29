@@ -5,7 +5,7 @@ Fachhochschule Südwestfalen · M.Sc. Angewandte Künstliche Intelligenz
 
 **Autor:** Ozan Kiraz · **Matrikelnummer:** 30500695<br>
 **Betreuung:** Prof. Dr. Christian Gawron<br>
-**Abgabe:** 29. September 2026 · **Abgabestand:** Branch `abgabe` (nach der Abgabe unverändert)
+**Abgabe:** 29. September 2026 · **Abgabestand:** Branch `abgabe`
 
 [![In Colab öffnen](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Oz1904/nlp-catan-rag-kiraz/blob/abgabe/NLP_Hausarbeit_CATAN_RAG.ipynb)
 
@@ -40,11 +40,12 @@ Bewertung v2, 30 Testfragen, Anteil vollständig korrekter Antworten:
 | **C** Gold-Chunks | 76,7 % (23/30) | 83,3 % | 75,0 % | 75,0 % |
 | **D** gesamtes Regelwerk (explorativ) | 66,7 % (20/30) | 100,0 % | 91,7 % | 25,0 % |
 
-- **B gegen A (Hauptvergleich):** +33,3 Prozentpunkte. Der exakte Permutationstest über 13 Regelgruppen ergibt p = 0,016; alle 7 Gruppen mit einem Unterschied sprechen für B. Das 95-%-Intervall des Cluster-Bootstraps reicht von +14,3 bis +54,8. H1 ist für diesen Katalog gestützt, der Nachweis aber knapp: Ein einzelnes umgekehrtes Urteil kann ihn über die Schwelle heben.
+- **B gegen A (Hauptvergleich):** +33,3 Prozentpunkte. Der exakte Permutationstest über 13 Regelgruppen ergibt p = 0,016; alle 7 Gruppen mit einem Unterschied sprechen für B. Das 95-%-Intervall des Cluster-Bootstraps reicht von +14,3 bis +54,8. H1 ist für diesen Katalog gestützt, aber nicht robust nachgewiesen: Ein einzelnes umgekehrtes Urteil kann den Befund über die Schwelle heben, und bei Zusammenlegung von Regelgruppen mit überlappenden Mechanismen steigt p auf 0,063 (Abschnitt 11.5).
 - **Nicht nachweisbar** sind C gegen B (+26,7; p = 0,094), D gegen B (+16,7; p = 0,367), D gegen C (−10,0; p = 0,453) und alle Zugewinne je Fragetyp. Ob sich die Zugewinne der Fragetypen voneinander unterscheiden, wurde nicht direkt getestet; die von H2 erwartete Reihenfolge zeigt sich in den Punktschätzungen nicht.
 - **Beschreibend:** Mit Kontext wurden deutlich weniger Antworten mit erfundenen oder übertragenen Grundspielregeln annotiert; Selbstwidersprüche und, nach den Notizen, Rechenfehler bei Anwendungsfragen traten auch mit Kontext auf. Mit dem gesamten Regelwerk (D) sind nur 3 von 12 Anwendungsfragen vollständig korrekt. Die Fehlerkategorien R und Z grenzt eine zweite Person anders ab; die Fehleranalyse ist beobachtend.
 - **Retrieval:** BM25 mit Stammformen oder Zeichen-4-Grammen findet die Belege auf den Testfragen mindestens so oft wie die verwendete dichte Suche.
 - **Bewertung v1 gegen v2:** binär 89 von 90 Urteilen gleich (κ = 0,978).
+- **Korrektur nach der ersten Abgabe:** Zwei Bewertungsfehler in v2 (V061, V083) werden in Abschnitt 11.5 gesondert korrigiert: C 22 statt 23, D 21 statt 20 von 30. Der Hauptvergleich ist nicht betroffen; v2 selbst bleibt unverändert.
 - **Zweitbewertung v2:** Eine zweite Person hat 40 der 120 Fälle verblindet nach derselben Rubrik bewertet. Binär sind 38 von 40 Urteilen gleich (κ = 0,899). Beide Abweichungen betreffen B, beide zugunsten von B. Die Merkmale R und Z ordnen beide Personen verschieden zu (je 67,5 % gleich).
 
 Einordnung und Grenzen stehen in den Kapiteln 11 und 12 des Notebooks.
