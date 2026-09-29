@@ -1,0 +1,9 @@
+﻿,A_ohne_rag,B_mit_rag,C_goldkontext,D_volltext
+Fehlerkriterium erfuellt,21,6,3,7
+Pflichtaussage falsch,23,7,3,6
+Pflichtaussage fehlt,3,2,0,3
+R: Entscheidung auf erfundene Regel gestuetzt,25,8,2,4
+Z: falsche Zusatzbehauptung,1,5,4,0
+W: Selbstwiderspruch,6,3,2,5
+G: Grundspielregel uebertragen,5,1,0,0
+nicht vollstaendig korrekt,25,15,7,10

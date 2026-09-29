@@ -1,0 +1,5 @@
+﻿bedingung,vollstaendig korrekt,Anteil %,fakten %,ausnahme %,anwendung %
+A_ohne_rag,5,16.7,16.7,16.7,16.7
+B_mit_rag,15,50.0,66.7,50.0,41.7
+C_goldkontext,23,76.7,83.3,75.0,75.0
+D_volltext,20,66.7,100.0,91.7,25.0
