@@ -1,6 +1,6 @@
 # Ergebnisse
 
-Alle Dateien in diesem Ordner stammen aus den Läufen des Notebooks. Der Prüfmodus liest sie und schreibt Neuberechnungen nach `pruefmodus/`. Keine Datei enthält die Regelhefte im Volltext; die Laufprotokolle speichern nur die Kennungen der Kontext-Chunks.
+Die Dateien in diesem Ordner stammen aus den Läufen des Notebooks, mit drei Ausnahmen: `bewertung_v2.csv` und `zweitbewertung_v2.csv` sind Exporte der Bewertungswerkzeuge, und die beiden `*_pruefmodus_*`-Dateien sind aus der Ausgabe des abgegebenen Notebooks übernommen. Der Prüfmodus liest sie und schreibt Neuberechnungen nach `pruefmodus/`. Keine Datei enthält die Regelhefte im Volltext; die Laufprotokolle speichern nur die Kennungen der Kontext-Chunks.
 
 | Datei | Inhalt |
 |---|---|
@@ -8,7 +8,7 @@ Alle Dateien in diesem Ordner stammen aus den Läufen des Notebooks. Der Prüfmo
 | `quellenmanifest.csv` | URL, Abrufdatum und SHA-256 je Regelheft |
 | `laufprotokoll.jsonl` | jede Modellantwort aus A, B, C mit Kontext-IDs, Tokenzahlen, Modellversion und Abbruchgrund |
 | `zusatz_d/versuchsplan_d.json`, `zusatz_d/laufprotokoll_d.jsonl` | Prüfsumme und Antworten des Zusatzversuchs D |
-| `bewertungen.csv`, `bewertung_schluessel.csv` | Bewertung v1 (90 Testfälle) und Zuordnung Fall → Bedingung |
+| `bewertungen.csv`, `bewertung_schluessel.csv` | Bewertungsbogen v1 (108 Fälle; bewertet sind die 90 Testfälle, die 18 Entwicklungsfälle bleiben leer) und Zuordnung Fall → Bedingung |
 | `bewertungen_archiv_*.csv` | Kalibrierung an den Entwicklungsfragen, geht in keine Kennzahl ein |
 | `zweitbewertung_auswahl.csv`, `bewertungen_zweitperson.csv` | vorab gezogene 30 Fälle und ihre Zweitbewertung (Schema v1) |
 | `bewertung_v2.csv` | Bewertung v2: je Fall die erfassten Merkmale, Zeitstempel und Rubrik-Prüfsumme |

@@ -1,10 +1,10 @@
 # Einfluss von Retrieval-Augmented Generation auf die Korrektheit deutschsprachiger Spielregelantworten am Beispiel von CATAN
 
-Semesterabschließende Ausarbeitung im Modul **Natural Language Processing (SoSe 2026)**
+Semesterabschließende Ausarbeitung im Modul **Natural Language Processing (SoSe 2026)**<br>
 Fachhochschule Südwestfalen · M.Sc. Angewandte Künstliche Intelligenz
 
-**Autor:** Ozan Kiraz · **Matrikelnummer:** 30500695
-**Betreuung:** Prof. Dr. Christian Gawron
+**Autor:** Ozan Kiraz · **Matrikelnummer:** 30500695<br>
+**Betreuung:** Prof. Dr. Christian Gawron<br>
 **Abgabe:** 29. September 2026 · **Abgabestand:** Branch `abgabe` (nach der Abgabe unverändert)
 
 [![In Colab öffnen](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Oz1904/nlp-catan-rag-kiraz/blob/abgabe/NLP_Hausarbeit_CATAN_RAG.ipynb)
@@ -16,14 +16,14 @@ Die Ausarbeitung ist das Notebook `NLP_Hausarbeit_CATAN_RAG.ipynb`. Es enthält 
 1. Notebook über den Colab-Link oben öffnen.
 2. *Laufzeit → Alle ausführen*.
 
-Voreingestellt ist `PRUEFMODUS = True`. Es wird kein API-Schlüssel, kein Google Drive und keine Datenbank benötigt, und es entstehen keine Kosten. Eine Internetverbindung ist nötig: Das Notebook klont den Abgabestand (Branch `abgabe`) dieses Repositorys und lädt die Regelhefte von catan.de.
+Voreingestellt ist `PRUEFMODUS = True`. Benötigt werden weder API-Schlüssel noch Google Drive noch eine Datenbank, und es entstehen keine Kosten. Eine Internetverbindung ist nötig: Das Notebook klont den Abgabestand (Branch `abgabe`) dieses Repositorys und lädt die Regelhefte von catan.de.
 
 Der Prüflauf macht Folgendes:
 
 - Er baut die Wissensbasis aus den PDFs neu auf.
 - Er prüft, ob Katalog, Konfiguration, Prompt- und Suchcode zeichengenau die Prüfsumme des Abgabelaufs ergeben (Hauptversuch und Zusatzversuch D getrennt).
 - Er prüft, ob jeder Bewertungsfall genau die protokollierte Antwort zeigt.
-- Er berechnet danach alle Kennzahlen, Tests, Intervalle und Abbildungen aus den gespeicherten Antworten und Bewertungen neu.
+- Er berechnet danach die Kennzahlen, Tests, Intervalle und Abbildungen der Auswertung aus den gespeicherten Antworten und Bewertungen neu. Die Top-k-Justierung wird aus der gespeicherten Datei geladen.
 
 Jeder Prüflauf legt in Colab einen eigenen, frischen Klon an und gibt den geprüften Commit aus; ein Ordner aus einem früheren Lauf wird weder verwendet noch verändert. Neu berechnete Dateien landen in `ergebnisse/pruefmodus/`; die abgegebenen Dateien bleiben unverändert.
 
@@ -40,9 +40,9 @@ Bewertung v2, 30 Testfragen, Anteil vollständig korrekter Antworten:
 | **C** Gold-Chunks | 76,7 % (23/30) | 83,3 % | 75,0 % | 75,0 % |
 | **D** gesamtes Regelwerk (explorativ) | 66,7 % (20/30) | 100 % | 91,7 % | 25,0 % |
 
-- **B gegen A (Hauptvergleich):** +33,3 Prozentpunkte. Der exakte Permutationstest über 13 Regelgruppen ergibt p = 0,016; alle 7 Gruppen mit einem Unterschied sprechen für B. Das 95-%-Intervall des Cluster-Bootstraps reicht von +14,3 bis +54,8. H1 ist für diesen Katalog gestützt.
+- **B gegen A (Hauptvergleich):** +33,3 Prozentpunkte. Der exakte Permutationstest über 13 Regelgruppen ergibt p = 0,016; alle 7 Gruppen mit einem Unterschied sprechen für B. Das 95-%-Intervall des Cluster-Bootstraps reicht von +14,3 bis +54,8. H1 ist für diesen Katalog gestützt, der Nachweis aber knapp: Ein einzelnes umgekehrtes Urteil kann ihn über die Schwelle heben.
 - **Nicht nachweisbar** sind C gegen B (+26,7; p = 0,094), D gegen B (+16,7; p = 0,367), D gegen C (−10,0; p = 0,453) und alle Zugewinne je Fragetyp. Ob sich die Zugewinne der Fragetypen voneinander unterscheiden, wurde nicht direkt getestet; die von H2 erwartete Reihenfolge zeigt sich in den Punktschätzungen nicht.
-- **Beschreibend:** Mit Kontext wurden deutlich weniger Antworten mit erfundenen oder übertragenen Grundspielregeln annotiert; Selbstwidersprüche und Rechenfehler bei Anwendungsfragen traten auch mit Kontext auf. Mit dem gesamten Regelwerk (D) sind nur 3 von 12 Anwendungsfragen vollständig korrekt. Die Fehlerkategorien R und Z grenzt eine zweite Person anders ab; die Fehleranalyse ist beobachtend.
+- **Beschreibend:** Mit Kontext wurden deutlich weniger Antworten mit erfundenen oder übertragenen Grundspielregeln annotiert; Selbstwidersprüche und, nach den Notizen, Rechenfehler bei Anwendungsfragen traten auch mit Kontext auf. Mit dem gesamten Regelwerk (D) sind nur 3 von 12 Anwendungsfragen vollständig korrekt. Die Fehlerkategorien R und Z grenzt eine zweite Person anders ab; die Fehleranalyse ist beobachtend.
 - **Retrieval:** BM25 mit Stammformen oder Zeichen-4-Grammen findet die Belege auf den Testfragen mindestens so oft wie die verwendete dichte Suche.
 - **Bewertung v1 gegen v2:** binär 89 von 90 Urteilen gleich (κ = 0,978).
 - **Zweitbewertung v2:** Eine zweite Person hat 40 der 120 Fälle verblindet nach derselben Rubrik bewertet. Binär sind 38 von 40 Urteilen gleich (κ = 0,899). Beide Abweichungen betreffen B, beide zugunsten von B. Die Merkmale R und Z ordnen beide Personen verschieden zu (je 67,5 % gleich).
@@ -58,7 +58,7 @@ Dasselbe Modell (`gpt-4.1-mini-2025-04-14`, Temperatur 0) beantwortet 30 Testfra
 | **A** | kein Regeltext |
 | **B** | vier abgerufene Abschnitte (dichte Suche mit `text-embedding-3-small`, Anwendbarkeitsfilter) |
 | **C** | die Abschnitte mit den annotierten Schlüsselzitaten (Gold-Chunks) |
-| **D** | alle für die Spielvariante zulässigen Abschnitte, rund 18.000 Tokens; nachträglich ergänzt, explorativ |
+| **D** | alle für die Spielvariante zulässigen Abschnitte, je nach Variante rund 5.100 bis 16.300 Tokens; nachträglich ergänzt, explorativ |
 
 Der Katalog umfasst 6 Entwicklungs- und 30 Testfragen in 19 getrennten Regelgruppen. Die Testfragen verteilen sich auf 6 Fakten-, 12 Ausnahme- und 12 Anwendungsfragen. Bewertet wird der Anteil vollständig korrekter Antworten gegen vorab festgelegte Pflichtaussagen und Fehlerkriterien. Die Unsicherheit bestimmen ein exakter Permutationstest und ein Cluster-Bootstrap auf Ebene der 13 Test-Regelgruppen.
 
@@ -78,10 +78,14 @@ Die erste Bewertung (v1) der 90 Antworten aus A, B und C enthielt dokumentierte 
 ├── bewertung_v2/
 │   ├── RUBRIK.md                    eingefrorene Rubrik v2 und vorab festgelegte Auswertung
 │   ├── stufe.py                     Regel Merkmale → Stufe
-│   ├── erzeuge_bogen.py, baue_seite.py, bewertung_template.html
+│   ├── erzeuge_bogen.py, baue_seite.py, bewertung_template.html, bewertung_v2.html
 │   │                                Bogen und Bewertungswerkzeug
+│   ├── exportiere.py                Export des Werkzeugs → ergebnisse/bewertung_v2.csv
 │   ├── bogen_v2.json                120 verblindete Fälle
-│   └── schluessel_v2.csv            Zuordnung Fall → Frage, Bedingung
+│   ├── schluessel_v2.csv            Zuordnung Fall → Frage, Bedingung
+│   └── zweitbewertung/              Zweitbewertung v2: vorab festgelegtes Vorgehen (README.md),
+│                                    Stichprobe (auswahl_zweit.csv, bogen_zweit.json, ziehe_stichprobe.py),
+│                                    Offline-Werkzeug (CATAN_Zweitbewertung.html, zweitbewertung_template.html)
 ├── ergebnisse/
 │   ├── versuchsplan.json            eingefrorene Konfiguration, Prüfsumme 2577d51e…
 │   ├── laufprotokoll.jsonl          jede Modellantwort A–C mit Kontext-IDs, Tokens, Modellversion
@@ -94,6 +98,7 @@ Die erste Bewertung (v1) der 90 Antworten aus A, B und C enthielt dokumentierte 
 │   ├── vergleich_v1_v2.csv          v1 gegen v2 je Fall
 │   ├── bootstrap.csv                Tests und Intervalle aller Vergleiche
 │   ├── korrektheit_*.csv, fehlerdiagnose.csv, fehlerprofil.csv, retrieval_metriken.csv
+│   ├── abschlusspruefung_*.csv, versionen*.csv   Prüfberichte und Programmversionen
 │   └── *.png                        Abbildungen
 └── quellen/README.md                Bezugsquelle und Prüfsummen der Regelhefte (PDFs nicht enthalten)
 ```
@@ -107,7 +112,7 @@ Nicht enthalten sind die Regelhefte, die extrahierten Volltexte und eine gefüll
 | `PRUEFMODUS = True` (Voreinstellung) | gespeicherte Ergebnisse prüfen und alle Kennzahlen neu berechnen | Internet |
 | `PRUEFMODUS = False`, `ENDLAUF = True` | Datenlauf: Suche neu ausführen, gespeicherte Antworten zur selben Prüfsumme wiederverwenden, fehlende erzeugen | `OPENAI_API_KEY` in den Colab-Secrets |
 | `PRUEFMODUS = False`, `ENDLAUF = False` | Entwicklungsphase, nur die sechs Entwicklungsfragen | `OPENAI_API_KEY` |
-| `ZUSATZ_D_ERZEUGEN = True` (Zelle 9.2) | erzeugt die D-Antworten, falls sie fehlen | `OPENAI_API_KEY` |
+| `ZUSATZ_D_ERZEUGEN = True` (Abschnitt 9.2) | erzeugt die D-Antworten, falls sie fehlen | `OPENAI_API_KEY` |
 
 `ABLAGE` wählt den Arbeitsordner: `"github"` (Repository-Klon in der Sitzung, Voreinstellung), `"drive"` oder `"colab"`. Jede Antwort wird sofort ins Laufprotokoll geschrieben; ein abgebrochener Lauf setzt beim nächsten Start fort. Der Supabase-Pfad (`ergebnisse/schema.sql`) ist optional und wurde in den dokumentierten Läufen nicht verwendet. Ein kompletter Datenlauf kostet einige Cent.
 

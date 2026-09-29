@@ -11,3 +11,5 @@ Festgelegt am 29.09.2026, bevor die zweite Person bewertet hat:
 ## Durchführung
 
 Die exportierte Datei ist am 29.09.2026 eingegangen und wurde unverändert als `ergebnisse/zweitbewertung_v2.csv` übernommen (SHA-256 `5c3992426fc23734d073121936a1ee465c283ba75fe22a9dcb86c1c975254a11`). Die Auswertung steht im Notebook (Kapitel 10, Abschnitt 11.1).
+
+`ziehe_stichprobe.py` gibt die Ziehung wieder (numpy `default_rng`, Seed `202609292`) und prüft, dass sie `auswahl_zweit.csv` in Auswahl und Reihenfolge exakt ergibt. Das ursprünglich verwendete Skript war nicht abgelegt worden; das Skript wurde nachträglich ergänzt.

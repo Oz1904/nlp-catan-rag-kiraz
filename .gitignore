@@ -5,6 +5,8 @@
 
 # Archivierte Bewertungsboegen frueherer Pruefsummen (Historie steht in Git)
 ergebnisse/*_archiv_*.csv
+# Ausnahme: dokumentierte Kalibrierung an den Entwicklungsfragen (ergebnisse/README.md)
+!ergebnisse/bewertungen_archiv_20260923-kalibrierung.csv
 
 # Zugangsdaten gehoeren in Colab-Secrets, nie ins Repository
 .env
