@@ -38,7 +38,7 @@ Bewertung v2, 30 Testfragen, Anteil vollständig korrekter Antworten:
 | **A** ohne Kontext | 16,7 % (5/30) | 16,7 % | 16,7 % | 16,7 % |
 | **B** Retrieval, Top-4 | 50,0 % (15/30) | 66,7 % | 50,0 % | 41,7 % |
 | **C** Gold-Chunks | 76,7 % (23/30) | 83,3 % | 75,0 % | 75,0 % |
-| **D** gesamtes Regelwerk (explorativ) | 66,7 % (20/30) | 100 % | 91,7 % | 25,0 % |
+| **D** gesamtes Regelwerk (explorativ) | 66,7 % (20/30) | 100,0 % | 91,7 % | 25,0 % |
 
 - **B gegen A (Hauptvergleich):** +33,3 Prozentpunkte. Der exakte Permutationstest über 13 Regelgruppen ergibt p = 0,016; alle 7 Gruppen mit einem Unterschied sprechen für B. Das 95-%-Intervall des Cluster-Bootstraps reicht von +14,3 bis +54,8. H1 ist für diesen Katalog gestützt, der Nachweis aber knapp: Ein einzelnes umgekehrtes Urteil kann ihn über die Schwelle heben.
 - **Nicht nachweisbar** sind C gegen B (+26,7; p = 0,094), D gegen B (+16,7; p = 0,367), D gegen C (−10,0; p = 0,453) und alle Zugewinne je Fragetyp. Ob sich die Zugewinne der Fragetypen voneinander unterscheiden, wurde nicht direkt getestet; die von H2 erwartete Reihenfolge zeigt sich in den Punktschätzungen nicht.
@@ -109,7 +109,7 @@ Nicht enthalten sind die Regelhefte, die extrahierten Volltexte und eine gefüll
 
 | Einstellung | Wirkung | Voraussetzung |
 |---|---|---|
-| `PRUEFMODUS = True` (Voreinstellung) | gespeicherte Ergebnisse prüfen und alle Kennzahlen neu berechnen | Internet |
+| `PRUEFMODUS = True` (Voreinstellung) | gespeicherte Ergebnisse prüfen und die Kennzahlen der Auswertung neu berechnen | Internet |
 | `PRUEFMODUS = False`, `ENDLAUF = True` | Datenlauf: Suche neu ausführen, gespeicherte Antworten zur selben Prüfsumme wiederverwenden, fehlende erzeugen | `OPENAI_API_KEY` in den Colab-Secrets |
 | `PRUEFMODUS = False`, `ENDLAUF = False` | Entwicklungsphase, nur die sechs Entwicklungsfragen | `OPENAI_API_KEY` |
 | `ZUSATZ_D_ERZEUGEN = True` (Abschnitt 9.2) | erzeugt die D-Antworten, falls sie fehlen | `OPENAI_API_KEY` |

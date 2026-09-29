@@ -1,6 +1,6 @@
 # Ergebnisse
 
-Die Dateien in diesem Ordner stammen aus den Läufen des Notebooks, mit drei Ausnahmen: `bewertung_v2.csv` und `zweitbewertung_v2.csv` sind Exporte der Bewertungswerkzeuge, und die beiden `*_pruefmodus_*`-Dateien sind aus der Ausgabe des abgegebenen Notebooks übernommen. Der Prüfmodus liest sie und schreibt Neuberechnungen nach `pruefmodus/`. Keine Datei enthält die Regelhefte im Volltext; die Laufprotokolle speichern nur die Kennungen der Kontext-Chunks.
+Die Dateien in diesem Ordner stammen aus den Läufen des Notebooks, mit folgenden Ausnahmen: `bewertung_v2.csv`, `bewertung_v2_abschluss.json` und `zweitbewertung_v2.csv` sind Exporte der Bewertungswerkzeuge, und die beiden `*_pruefmodus_*`-Dateien sind aus der Ausgabe des abgegebenen Notebooks übernommen. Der Prüfmodus liest sie und schreibt Neuberechnungen nach `pruefmodus/`. Keine Datei enthält die Regelhefte im Volltext; die Laufprotokolle speichern nur die Kennungen der Kontext-Chunks.
 
 | Datei | Inhalt |
 |---|---|
