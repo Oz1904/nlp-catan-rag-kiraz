@@ -13,6 +13,8 @@ Alle Dateien in diesem Ordner stammen aus den Läufen des Notebooks. Der Prüfmo
 | `zweitbewertung_auswahl.csv`, `bewertungen_zweitperson.csv` | vorab gezogene 30 Fälle und ihre Zweitbewertung (Schema v1) |
 | `bewertung_v2.csv` | Bewertung v2: je Fall die erfassten Merkmale, Zeitstempel und Rubrik-Prüfsumme |
 | `bewertung_v2_abschluss.json` | Zeitpunkt, zu dem Bewertung v2 abgeschlossen wurde |
+| `zweitbewertung_v2.csv` | Zweitbewertung v2: 40 vorab gezogene Fälle (Z01–Z40), unverändert aus dem Offline-Werkzeug exportiert; Zuordnung in `bewertung_v2/zweitbewertung/auswahl_zweit.csv` |
+| `zweitbewertung_v2_vergleich.csv` | Stufe und Merkmalsübereinstimmung je Fall, Autor gegen zweite Person |
 | `vergleich_v1_v2.csv` | Stufe je Fall nach v1 und v2 |
 | `korrektheit_gesamt.csv`, `korrektheit_nach_fragetyp.csv`, `korrektheit_mit_d.csv`, `korrektheit_je_frage_mit_d.csv` | Anteile vollständig korrekter Antworten (v2) |
 | `bootstrap.csv` | alle Vergleiche mit Permutationstest und Bootstrap-Intervall (10.000 Ziehungen) |

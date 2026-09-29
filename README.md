@@ -43,6 +43,7 @@ Bewertung v2, 30 Testfragen, Anteil vollständig korrekter Antworten:
 - **Beschreibend:** Kontext beseitigt erfundene und übertragene Grundspielregeln weitgehend, aber nicht Selbstwidersprüche und Rechenfehler bei Anwendungsfragen; mit dem gesamten Regelwerk (D) sind nur 3 von 12 Anwendungsfragen vollständig korrekt.
 - **Retrieval:** BM25 mit Stammformen oder Zeichen-4-Grammen findet die Belege auf den Testfragen mindestens so oft wie die verwendete dichte Suche.
 - **Bewertung v1 gegen v2:** binär 89 von 90 Urteilen gleich (κ = 0,978).
+- **Zweitbewertung v2:** Eine zweite Person hat 40 der 120 Fälle verblindet nach derselben Rubrik bewertet. Binär sind 38 von 40 Urteilen gleich (κ = 0,899). Beide Abweichungen betreffen B, beide zugunsten von B. Die Merkmale R und Z ordnen beide Personen verschieden zu (je 67,5 % gleich).
 
 Einordnung und Grenzen stehen in den Kapiteln 11 und 12 des Notebooks.
 
@@ -83,6 +84,8 @@ Die erste Bewertung (v1) der 90 Antworten aus A, B und C enthielt dokumentierte 
 │   ├── bewertungen.csv, bewertung_schluessel.csv, bewertungen_zweitperson.csv
 │   │                                Bewertung v1 und Zweitbewertung
 │   ├── bewertung_v2.csv             Bewertung v2 (Merkmale je Fall)
+│   ├── zweitbewertung_v2.csv, zweitbewertung_v2_vergleich.csv
+│   │                                Zweitbewertung v2 (40 Fälle) und Vergleich mit v2
 │   ├── vergleich_v1_v2.csv          v1 gegen v2 je Fall
 │   ├── bootstrap.csv                Tests und Intervalle aller Vergleiche
 │   ├── korrektheit_*.csv, fehlerdiagnose.csv, fehlerprofil.csv, retrieval_metriken.csv
@@ -124,4 +127,4 @@ Nachträglich ergänzt und als explorativ gekennzeichnet sind außerdem der BM25
 
 ## Einsatz von KI-Werkzeugen
 
-Als KI-Werkzeug wurde ausschließlich Claude (Anthropic) eingesetzt, in erheblichem Umfang: für Versuchsdesign und Code, für alle Fragen und Bewertungskriterien als Entwürfe, für den Text und für die Überarbeitung am 29.09.2026. Die Bewertungen v1 und v2 stammen vom Autor. Die Aufschlüsselung nach Arbeitsschritten steht in Kapitel 13 des Notebooks.
+Als KI-Werkzeug wurde ausschließlich Claude (Anthropic) eingesetzt, in erheblichem Umfang: für Versuchsdesign und Code, für alle Fragen und Bewertungskriterien als Entwürfe, für den Text und für die Überarbeitung am 29.09.2026. Die Bewertungen v1 und v2 stammen vom Autor, die Zweitbewertungen von einer zweiten Person ohne KI-Werkzeug. Die Aufschlüsselung nach Arbeitsschritten steht in Kapitel 13 des Notebooks.

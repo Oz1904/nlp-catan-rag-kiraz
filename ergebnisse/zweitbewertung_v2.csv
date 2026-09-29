@@ -1,0 +1,41 @@
+﻿fall_id,p,k,r,z,w,g,notiz,gespeichert,rubrik_sha256
+Z01,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:24:33.557Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z02,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:24:45.125Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z03,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:25:00.565Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z04,enthalten|enthalten|enthalten,nein|nein|nein,ja,ja,nein,nein,Behauptet Abgaben nur für Rohstoffkarten gelten.,2026-09-29T07:27:48.759Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z05,falsch|falsch,ja|nein|nein,nein,nein,nein,ja,Übernimmt die Grundspiel-Regel,2026-09-29T07:28:32.549Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z06,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:28:53.131Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z07,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:29:17.433Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z08,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:29:33.051Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z09,falsch|falsch|enthalten,ja|nein|nein,nein,ja,nein,nein,Startrohstoffe falsch angegeben,2026-09-29T07:30:26.314Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z10,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:30:44.285Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z11,enthalten|enthalten|enthalten,nein|nein|ja,nein,ja,nein,nein,"Behauptet, dass Hügelland Handelsware liefert",2026-09-29T07:31:41.649Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z12,falsch|falsch|falsch,nein|nein|nein,ja,ja,nein,nein,komplett erfundene Regeln,2026-09-29T07:32:21.973Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z13,enthalten|enthalten|enthalten,nein|nein|nein,nein,ja,ja,nein,Wiederspruch und falsche kosten,2026-09-29T07:33:05.200Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z14,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:33:22.747Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z15,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:33:34.515Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z16,enthalten|enthalten|enthalten,nein|nein|nein,nein,ja,nein,nein,falsche Standardkosten,2026-09-29T07:34:34.617Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z17,falsch|falsch|enthalten,ja|nein|nein,ja,ja,nein,nein,Erfunden,2026-09-29T07:35:26.121Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z18,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:35:41.819Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z19,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:35:56.105Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z20,enthalten|enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:36:18.081Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z21,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:36:35.353Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z22,falsch|falsch,nein|ja|nein,nein,nein,nein,nein,falsch zugeordnet,2026-09-29T07:37:58.485Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z23,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:38:17.571Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z24,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:38:30.653Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z25,enthalten|enthalten,nein|nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:38:53.421Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z26,falsch|enthalten,ja|nein|nein|ja,nein,nein,nein,nein,Falsch,2026-09-29T07:40:02.843Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z27,enthalten|enthalten,nein|nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:40:30.957Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z28,falsch|falsch,ja|nein|ja|nein,ja,ja,nein,nein,Erfunden Regel,2026-09-29T07:41:32.813Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z29,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:41:51.079Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z30,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:42:02.155Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z31,enthalten|fehlt,nein|nein|nein,nein,ja,nein,nein,"Papier vergessen, Falsches Wissen",2026-09-29T07:42:55.695Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z32,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:43:38.337Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z33,enthalten|enthalten|enthalten|enthalten,nein|nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:43:49.688Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z34,falsch|falsch|falsch|falsch,ja|nein|ja|ja,nein,ja,nein,nein,macht kein sinn,2026-09-29T07:44:34.671Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z35,falsch|fehlt|falsch|falsch,nein|nein|ja|ja,nein,ja,nein,nein,ignoriert Effekt,2026-09-29T07:45:18.643Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z36,falsch|falsch|enthalten|falsch,ja|nein|nein|ja,nein,ja,nein,nein,passt nicht,2026-09-29T07:46:03.631Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z37,falsch|enthalten,ja|nein|nein,nein,nein,nein,nein,falsche Zuordnung,2026-09-29T07:46:34.537Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z38,enthalten|falsch,nein|nein|ja,nein,ja,nein,nein,falsche Baukosten,2026-09-29T07:47:06.156Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z39,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:47:29.815Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
+Z40,enthalten|enthalten,nein|nein|nein,nein,nein,nein,nein,,2026-09-29T07:47:51.761Z,4f8a7960ba1e7f55e1f5a30066b245eb4c52683a954cab6f8c69215bfb5aee03
