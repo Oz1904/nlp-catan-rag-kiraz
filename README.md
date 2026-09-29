@@ -124,4 +124,4 @@ Nachträglich ergänzt und als explorativ gekennzeichnet sind außerdem der BM25
 
 ## Einsatz von KI-Werkzeugen
 
-Sprachmodelle wurden in erheblichem Umfang eingesetzt: für Versuchsdesign und Code, für alle Fragen und Bewertungskriterien als Entwürfe, für Text und Einordnung sowie für die Überarbeitung am 29.09.2026. Die Bewertungen v1 und v2 stammen vom Autor. Der vollständige, nach Arbeitsschritten getrennte Hinweis steht in Kapitel 13 des Notebooks.
+Als KI-Werkzeug wurde ausschließlich Claude (Anthropic) eingesetzt, in erheblichem Umfang: für Versuchsdesign und Code, für alle Fragen und Bewertungskriterien als Entwürfe, für den Text und für die Überarbeitung am 29.09.2026. Die Bewertungen v1 und v2 stammen vom Autor. Die Aufschlüsselung nach Arbeitsschritten steht in Kapitel 13 des Notebooks.
