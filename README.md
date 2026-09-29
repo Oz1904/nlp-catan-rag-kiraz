@@ -25,7 +25,7 @@ Der Prüflauf macht Folgendes:
 - Er prüft, ob jeder Bewertungsfall genau die protokollierte Antwort zeigt.
 - Er berechnet danach alle Kennzahlen, Tests, Intervalle und Abbildungen aus den gespeicherten Antworten und Bewertungen neu.
 
-Neu berechnete Dateien landen in `ergebnisse/pruefmodus/`; die abgegebenen Dateien bleiben unverändert. Die dichte Suche wird nicht wiederholt, weil sie neue Embeddings bräuchte. Die Retrieval-Kennzahlen werden aus den gespeicherten Treffern neu berechnet.
+Jeder Prüflauf legt in Colab einen eigenen, frischen Klon an und gibt den geprüften Commit aus; ein Ordner aus einem früheren Lauf wird weder verwendet noch verändert. Neu berechnete Dateien landen in `ergebnisse/pruefmodus/`; die abgegebenen Dateien bleiben unverändert. Die dichte Suche wird nicht wiederholt, weil sie neue Embeddings bräuchte. Die Retrieval-Kennzahlen werden aus den gespeicherten Treffern neu berechnet.
 
 ## Ergebnisse in Kurzform
 
@@ -39,7 +39,7 @@ Bewertung v2, 30 Testfragen, Anteil vollständig korrekter Antworten:
 | **D** gesamtes Regelwerk (explorativ) | 66,7 % (20/30) | 100 % | 91,7 % | 25,0 % |
 
 - **B gegen A (Hauptvergleich):** +33,3 Prozentpunkte. Der exakte Permutationstest über 13 Regelgruppen ergibt p = 0,016; alle 7 Gruppen mit einem Unterschied sprechen für B. Das 95-%-Intervall des Cluster-Bootstraps reicht von +14,3 bis +54,8. H1 ist für diesen Katalog gestützt.
-- **Nicht nachweisbar** sind C gegen B (+26,7; p = 0,094), D gegen B (+16,7; p = 0,367), D gegen C (−10,0; p = 0,453) und alle Unterschiede je Fragetyp. Die von H2 erwartete Reihenfolge der Fragetypen zeigt sich beschreibend nicht.
+- **Nicht nachweisbar** sind C gegen B (+26,7; p = 0,094), D gegen B (+16,7; p = 0,367), D gegen C (−10,0; p = 0,453) und alle Zugewinne je Fragetyp. Ob sich die Zugewinne der Fragetypen voneinander unterscheiden, wurde nicht direkt getestet; die von H2 erwartete Reihenfolge zeigt sich in den Punktschätzungen nicht.
 - **Beschreibend:** Kontext beseitigt erfundene und übertragene Grundspielregeln weitgehend, aber nicht Selbstwidersprüche und Rechenfehler bei Anwendungsfragen; mit dem gesamten Regelwerk (D) sind nur 3 von 12 Anwendungsfragen vollständig korrekt.
 - **Retrieval:** BM25 mit Stammformen oder Zeichen-4-Grammen findet die Belege auf den Testfragen mindestens so oft wie die verwendete dichte Suche.
 - **Bewertung v1 gegen v2:** binär 89 von 90 Urteilen gleich (κ = 0,978).
@@ -127,4 +127,4 @@ Nachträglich ergänzt und als explorativ gekennzeichnet sind außerdem der BM25
 
 ## Einsatz von KI-Werkzeugen
 
-Als KI-Werkzeug wurde ausschließlich Claude (Anthropic) eingesetzt, in erheblichem Umfang: für Versuchsdesign und Code, für alle Fragen und Bewertungskriterien als Entwürfe, für den Text und für die Überarbeitung am 29.09.2026. Die Bewertungen v1 und v2 stammen vom Autor, die Zweitbewertungen von einer zweiten Person ohne KI-Werkzeug. Die Aufschlüsselung nach Arbeitsschritten steht in Kapitel 13 des Notebooks.
+Eingesetzt wurden Claude (Anthropic) und ChatGPT (OpenAI). Claude in erheblichem Umfang: für Versuchsdesign und Code, für alle Fragen und Bewertungskriterien als Entwürfe, für den Text und für die Überarbeitung am 29.09.2026. ChatGPT zur kritischen Begutachtung von Zwischenständen; übernommene Hinweise wurden mit Claude umgesetzt. Die Bewertungen v1 und v2 stammen vom Autor, die Zweitbewertungen von einer zweiten Person ohne KI-Werkzeug. Die Aufschlüsselung nach Arbeitsschritten steht in Kapitel 13 des Notebooks.
